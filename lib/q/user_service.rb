@@ -3,7 +3,7 @@ module Q
 
     def get_user_id(auth)
       user = User.find_by_uid(auth["uid"]) || create_user(auth)
-      user.uid
+      user.id
     end
 
     private

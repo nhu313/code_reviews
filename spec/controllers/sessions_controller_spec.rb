@@ -2,13 +2,13 @@ require 'spec_helper'
 require 'mocks/q/mock_user_service'
 
 describe SessionsController do
-  it "loads sign in screen" do
+  it "gets sign in screen" do
     get :signin
     response.should be_success
   end
 
   context "destroy" do
-    it "clear the user id on destroy" do
+    it "clear the user id" do
       request.session[:user_id] = 1
       get :destroy
       request.session[:user_id].should be_nil
@@ -26,7 +26,7 @@ describe SessionsController do
       @controller = SessionsController.new(@user_service)
     end
 
-    it "asks user service to find the id" do
+    it "gets the user" do
       get :create
       @user_service.was told_to(:get_user_id)
     end

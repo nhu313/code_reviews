@@ -21,4 +21,5 @@ group :test, :development do
   gem 'database_cleaner'
   gem 'surrogate'
   gem 'simplecov'
+  gem "factory_girl_rails", "~> 4.2.1", :require => false
 end
