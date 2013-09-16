@@ -1,0 +1,30 @@
+body {
+  background-color: #444444;
+  font: 100% Times;
+  text-align: center;
+}
+
+p.title {
+  font: 20em "Baskerville Old Face", "Lucida Handwriting";
+  color: #A3D41F;
+}
+
+#main {
+  border: 0px;
+}
+
+#main a {
+  font-size: 2em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  border: 1px solid ;
+  border-right: 0px;
+  border-left: 0px;
+  padding: 0.3em;
+  padding-left: 1.4em;
+  padding-right: 1.4em;
+}
+
+#main a:hover {
+  color: #FF0E4A;
+}
