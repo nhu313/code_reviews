@@ -7,5 +7,5 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     config = ENV
   end
 
-  provider :google_oauth2, ENV['google_id'], ENV['google_secret'], {approval_prompt: ''}
+  provider :google_oauth2, config['google_id'], config['google_secret'], {approval_prompt: ''}
 end
