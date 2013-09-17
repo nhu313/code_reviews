@@ -9,4 +9,3 @@ test:
 production:
   google_id: ID
   google_secret: secret
-
