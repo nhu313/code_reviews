@@ -1,12 +1,12 @@
 development:
-  GOOGLE-ID: ID
-  GOOGLE-SECRET: secret
+  google_id: ID
+  google_secret: secret
 
 test:
-  GOOGLE-ID: ID
-  GOOGLE-SECRET: secret
+  google_id: ID
+  google_secret: secret
 
 production:
-  GOOGLE-ID: ID
-  GOOGLE-SECRET: secret
+  google_id: ID
+  google_secret: secret
 
