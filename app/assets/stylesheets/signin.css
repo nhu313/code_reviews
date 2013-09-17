@@ -4,16 +4,13 @@ body {
   text-align: center;
 }
 
+
 p.title {
   font: 20em "Baskerville Old Face", "Lucida Handwriting";
   color: #A3D41F;
 }
 
-#main {
-  border: 0px;
-}
-
-#main a {
+p.sign_in_text a {
   font-size: 2em;
   text-transform: uppercase;
   color: #FFFFFF;
@@ -25,6 +22,6 @@ p.title {
   padding-right: 1.4em;
 }
 
-#main a:hover {
+p.sign_in_text a:hover {
   color: #FF0E4A;
 }

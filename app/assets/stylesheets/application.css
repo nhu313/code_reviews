@@ -9,7 +9,6 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require_tree .
  */
 
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p,
@@ -64,24 +63,23 @@ body {
 #nav {
   display: block;
   text-align: right;
-  padding-right: 1em;
+  top: 1em;
 }
 
 #nav li{
-  padding-bottom: .5em;
+  display: inline;
+  padding: 1em;
 }
 
 #nav li a {
   color: #FFFFFF;
+  font-size: 1.1em;
   text-transform: uppercase;
   line-height: 1em;
 }
 
-#nav li a:hover {
-  color: #A3D41F;
-}
-
 #nav li a:hover, #nav li a:active {
+  color: #A3D41F;
   border-bottom: .16em solid #A3D41F;
 }
 
@@ -132,25 +130,4 @@ a {
   padding-right: 1em;
   padding-left: 1em;
   border-bottom: 2px solid #A3D41F;
-}
-
-p.title {
-  font: 20em "Baskerville Old Face", "Lucida Handwriting";
-  color: #A3D41F;
-}
-
-p.sign_in_text a {
-  font-size: 2em;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  border: 1px solid ;
-  border-right: 0px;
-  border-left: 0px;
-  padding: 0.3em;
-  padding-left: 1.4em;
-  padding-right: 1.4em;
-}
-
-p.sign_in_text a:hover {
-  color: #FF0E4A;
 }
