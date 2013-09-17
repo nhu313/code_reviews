@@ -1,0 +1,12 @@
+development:
+  GOOGLE-ID: ID
+  GOOGLE-SECRET: secret
+
+test:
+  GOOGLE-ID: ID
+  GOOGLE-SECRET: secret
+
+production:
+  GOOGLE-ID: ID
+  GOOGLE-SECRET: secret
+

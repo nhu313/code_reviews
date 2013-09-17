@@ -1,3 +1,4 @@
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :google_oauth2, '434988192076.apps.googleusercontent.com', '2zdGqktCN6wwvzCA4rTnU217', {approval_prompt: ''}
+  config = YAML.load_file(Rails.root.join('config/omniauth.yml'))[Rails.env]
+  provider :google_oauth2, config['google_id'], config['google_secret'], {approval_prompt: ''}
 end
