@@ -1,10 +1,7 @@
 require 'q/user_service'
 
 class SessionsController < ApplicationController
-
-  def initialize(*user_service)
-    @user_service = user_service[0]
-  end
+  attr_writer :user_service
 
   def signin
     render action: "signin"

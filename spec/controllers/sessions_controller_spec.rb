@@ -23,7 +23,7 @@ describe SessionsController do
   context "create" do
     before :each do
       @user_service = Q::MockUserService.new
-      @controller = SessionsController.new(@user_service)
+      @controller.user_service = @user_service
     end
 
     it "gets the user" do
