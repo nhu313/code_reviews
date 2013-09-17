@@ -1,6 +1,6 @@
 require 'q/user_service'
 
-class SessionsController < ApplicationController
+class UsersController < ApplicationController
   attr_writer :user_service
 
   def signin

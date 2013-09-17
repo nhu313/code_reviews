@@ -1,7 +1,7 @@
 require 'spec_helper'
 require 'mocks/q/mock_user_service'
 
-describe SessionsController do
+describe UsersController do
   it "gets sign in screen" do
     get :signin
     response.should be_success

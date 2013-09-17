@@ -1,8 +1,8 @@
 CodeReview::Application.routes.draw do
   root :to => "reviews#index"
-  get "sessions/signout" => "sessions#destroy", :as => :signout
-  get "/auth/:provider/callback" => "sessions#create"
-  get "sessions/signin" => "sessions#signin", :as => :signin
-  get "/sessions/create_user" => "sessions#create"
+  get "users/signout" => "users#destroy", :as => :signout
+  get "/auth/:provider/callback" => "users#create"
+  get "users/signin" => "users#signin", :as => :signin
+  get "/users/create_user" => "users#create"
 
 end
