@@ -4,7 +4,8 @@ describe ReviewsController do
 
   context "index" do
     it "when there is a user in session" do
-      request.session[:user_id] = "user"
+      user = FactoryGirl.create(:user, :uid => "1114")
+      request.session[:user_id] = user.id
       get :index
       response.should be_success
     end

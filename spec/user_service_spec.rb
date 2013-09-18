@@ -7,7 +7,7 @@ module Q
     before(:all) do
       @service = UserService.new
       @user_uid = "id11"
-      @user_info = Hash["name" => "Annie", "email" => "annie@email.com"]
+      @user_info = Hash["first_name" => "Annie", "last_name" => "Smith", "email" => "annie@email.com"]
       @auth = Hash[UID => @user_uid, "info" => @user_info]
     end
 
