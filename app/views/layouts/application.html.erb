@@ -8,16 +8,16 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <% unless request.original_url.include? "signin"%>
-    <div id="header" class="group">
+  <% unless request.original_url.include? "signin" %>
+    <header class="header">
       <div id="logo">Q</div>
       <div class="greeting">Hi Nhu! <%= link_to "Sign Out", signout_path%></div>
-      <ul class="nav">
-        <li><a href="index.html">Create a Challenge</a></li>
-        <li><a href="#">Accept a Challenge</a></li>
-        <li><a href="#">View My Challenges</a></li>
-      </ul>
-    </div> <!-- /header -->
+      <nav>
+        <a href="index.html">Create a Challenge</a>
+        <a href="#">Accept a Challenge</a>
+        <a href="#">View My Challenges</a>
+      </nav>
+    </header>
   <% end %>
 
 

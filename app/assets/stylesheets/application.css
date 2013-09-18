@@ -53,7 +53,7 @@ body {
   text-align: left;
 }
 
-#header {
+header {
   height: 7.4em;
   background: #444444;
   border-bottom: 2px solid #A3D41F;
@@ -68,28 +68,24 @@ body {
   display: inline-block;
 }
 
-.nav {
+nav {
   display: inline-block;
   float: left;
   margin-top: 5.3em;
   margin-left: 0.3em;
+
 }
 
-.nav li{
-  display: inline;
-  padding: 1em;
-  padding-left: 0em;
-}
-
-.nav a {
+nav a {
   color: #FFFFFF;
   font-size: 1.1em;
   text-transform: uppercase;
   line-height: 1em;
   border-bottom: .16em solid #A3D41F;
+  margin-right: 1em;
 }
 
-.nav a:hover, .nav a:active {
+nav a:hover, nav a:active {
   color: #A3D41F;
   border-bottom: .16em solid #A3D41F;
 }

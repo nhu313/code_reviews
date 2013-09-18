@@ -25,8 +25,8 @@ group :test, :development do
   gem 'sqlite3'
   gem 'rspec-rails'
   gem 'cucumber-rails', :require => false
-  gem 'database_cleaner'
   gem 'surrogate'
   gem 'simplecov'
   gem "factory_girl_rails", "~> 4.2.1", :require => false
+  gem "database_cleaner", "<1.1.0"
 end
