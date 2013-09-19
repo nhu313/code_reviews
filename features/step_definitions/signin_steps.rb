@@ -9,10 +9,6 @@ When(/^I go to the homepage$/) do
   visit root_path
 end
 
-Then(/^I should see the "(.*?)" link$/) do |link|
-  page.should have_content(link)
-end
-
 Then(/^I should not see the header$/) do
   page.should_not have_selector("header")
 end
@@ -25,16 +21,21 @@ Then(/^I should see the reviews page$/) do
   page.should have_content("reviews")
 end
 
-When(/^I log in$/) do
-  mock_google_login
+When(/^I log in as "(.*?)"$/) do |full_name|
+  first_name, last_name = full_name.split(" ")
+  mock_google_login(first_name, last_name)
   click_link("Sign in with Google")
 end
 
-def mock_google_login
+Then(/^I should see "(.*?)"$/) do |value|
+  page.should have_content(value)
+end
+
+def mock_google_login(first_name = "first name", last_name = "last name")
   @auth_hash = {'provider' => 'google_oauth2',
                 'uid' => '123',
-                'info' => {'first_name' => 'first name',
-                           'last_name' => 'last name',
+                'info' => {'first_name' => first_name,
+                           'last_name' => last_name,
                             'email' => 'name@email.com'
     }
   }

@@ -1,13 +1,13 @@
 Feature: Authentication
 
 In order to interact with the application
-As a new user
-I want to see the sign
+As a user
+I want to sign in with my Google account
 
 Scenario: Not logged in
   Given that I am a new user
   When I go to the homepage
-  Then I should see the "Sign in" link
+  Then I should see "Sign in"
 
 Scenario: Logging in with Google
   Given that I am a new user
@@ -23,11 +23,16 @@ Scenario: Header not displayed on sign page
 
 Scenario:
   Given I go to the homepage
-  When I log in
-  Then I should see the "Sign Out" link
+  When I log in as "Homer Simpson"
+  Then I should see "Sign Out"
 
 Scenario:
   Given I go to the homepage
-  When I log in
+  When I log in as "Homer Simpson"
+  Then I should see "Homer"
+
+Scenario:
+  Given I go to the homepage
+  When I log in as "Homer Simpson"
   And I click "Sign Out"
-  Then I should see the "Sign in" link
+  Then I should see "Sign in"
