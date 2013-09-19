@@ -1,0 +1,11 @@
+!!!
+%html
+  %head
+    %title Q - Sign In
+    = stylesheet_link_tag 'signin.css', media: "all", "data-turbolinks-track" => true
+    = csrf_meta_tags
+  %body
+    .title Q
+    .sign_in_text
+      %a{:href=> "/auth/google_oauth2"} Sign in with Google
+

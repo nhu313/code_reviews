@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   attr_writer :user_service
 
   def signin
-    render action: "signin"
+    render(:layout => "layouts/signin")
   end
 
   def create

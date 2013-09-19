@@ -7,10 +7,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 gem 'turbolinks'
-gem 'jbuilder', '~> 1.2'
-
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
+gem 'jbuilder', '>= 1.2'
+gem 'haml', '>= 4.0.3'
+gem 'omniauth', '>= 1.1.4'
+gem 'omniauth-google-oauth2', '>= 0.2.1'
 
 group :doc do
   gem 'sdoc', require: false
