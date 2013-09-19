@@ -11,10 +11,6 @@ Given(/^that I am logged in$/) do
   click_link("Sign in with Google")
 end
 
-When(/^I go to the homepage$/) do
-  visit root_path
-end
-
 Then(/^I should not see the header$/) do
   page.should_not have_selector("header")
 end
