@@ -16,5 +16,5 @@ Scenario: Able to go create new request page
   Given that I am on the "Create Request" page
   And I correctly filled out the request form
   When I click the "Submit" button
-  Then I should see "submitted"
+  Then I should see "Submitted"
 

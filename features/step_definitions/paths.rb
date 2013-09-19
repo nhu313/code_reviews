@@ -1,6 +1,6 @@
 ROUTES = {
-  "Reviews" => "/reviews",
-  "Create Request" => "/requests/new"
+  "Reviews" => "reviews",
+  "Create Request" => "requests/new"
 }
 
 Given(/^that I am on the homepage$/) do

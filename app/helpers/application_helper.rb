@@ -6,7 +6,7 @@ module ApplicationHelper
   end
 
   def user
-    @user ||= controller.user
+    controller.user
   end
 
 end
