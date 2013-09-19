@@ -1,6 +1,5 @@
-<% content_for :head do %>
-  <%= stylesheet_link_tag 'signin.css', media: "all", "data-turbolinks-track" => true %>
-<% end %>
+<% content_for(:title) {"Sign In"}%>
+<% content_for(:head) {stylesheet_link_tag 'signin.css', media: "all", "data-turbolinks-track" => true }%>
 
 <p class="title">Q</p>
 <p class="sign_in_text"><a href="/auth/google_oauth2">Sign in with Google</a></p>

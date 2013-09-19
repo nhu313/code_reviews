@@ -14,25 +14,24 @@ Scenario: Logging in with Google
   And I have a valid login
   When I go to the homepage
   And I click "Sign in with Google"
-  Then I should see the reviews page
+  Then I should be taken to the "Reviews" page
 
-Scenario: Header not displayed on sign page
+Scenario: Header not displayed on the sign in page
   Given that I am not logged in
   When I go to the homepage
   Then I should not see the header
 
-Scenario:
+Scenario: Able to sign out
   Given I go to the homepage
   When I log in as "Homer Simpson"
   Then I should see "Sign Out"
 
-Scenario:
+Scenario: See user first name on the homepage
   Given I go to the homepage
   When I log in as "Homer Simpson"
   Then I should see "Homer"
 
-Scenario:
-  Given I go to the homepage
-  When I log in as "Homer Simpson"
+Scenario: After logging out, user should be able to log in
+  Given that I am logged in
   And I click "Sign Out"
   Then I should see "Sign in"
