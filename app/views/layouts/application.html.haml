@@ -8,7 +8,7 @@
   %body
     %header
       #logo= link_to "Q", root_path
-      %div.greeting Hi #{@user.first_name}! #{link_to "Sign Out", signout_path}
+      %div.greeting Hi #{user.first_name}! #{link_to "Sign Out", signout_path}
       %nav
         = link_to "Create Request", "requests/new"
     #main-content
