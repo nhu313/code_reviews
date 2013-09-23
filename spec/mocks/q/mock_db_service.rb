@@ -4,9 +4,10 @@ require 'q/db_service'
 module Q
   class MockDBService
     Surrogate.endow(self)
+    attr_accessor :attributes
 
-    define(:initialize) {|model = "nothing"| @model = model}
-    define(:create) {|attributes| model.new(attributes)}
+    define(:initialize) {|model = Hash|}
+    define(:create) {|att| @attributes = att}
     define(:find) {|filter| }
     define(:find_all) {|filter|}
   end

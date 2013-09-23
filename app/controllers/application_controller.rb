@@ -4,7 +4,14 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def user
-    User.find_by_id(session[:user_id])
+    User.find_by_id(user_id)
   end
 
+  def user_id
+    session[:user_id]
+  end
+
+  def db_service
+    Q::DBService.new(model)
+  end
 end
