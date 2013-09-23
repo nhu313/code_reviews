@@ -8,7 +8,7 @@ module Q
 
     private
     def create_user(auth)
-      User.create(uid: auth["uid"],
+      User.create!(uid: auth["uid"],
                   first_name: auth["info"]["first_name"],
                   last_name: auth["info"]["last_name"],
                   email: auth["info"]["email"])

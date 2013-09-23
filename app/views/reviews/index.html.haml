@@ -1,3 +1,32 @@
 = flash[:notice]
 = content_for(:title) {"Reviews"}
 = link_to 'Sign out', signout_path
+
+%table
+  %thead
+    %tr
+      %th Title
+      %th Url
+      %th Date posted
+      %th Description
+      %th User
+
+  %tbody
+    = @requests.each do |request|
+      %tr
+        %td
+          = request.title
+        %td
+          = request.url
+        %td
+          = request.date_posted
+        %td
+          = request.description
+        %td
+          = request.user_id
+        %td
+          = link_to 'Show', request
+        %td
+          = link_to 'Edit', edit_request_path(request)
+        %td
+          = link_to 'Destroy', request, method: :delete, data: { confirm: 'Are you sure?' }

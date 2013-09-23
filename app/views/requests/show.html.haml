@@ -1,0 +1,20 @@
+%p
+  %b Title:
+  = @request.title
+%p
+  %b Url:
+  = @request.url
+
+%p
+  %b Date posted:
+  = @request.date_posted
+
+%p
+  %b Description:
+  = @request.description
+
+%p
+  %b User:
+  = @request.user_id
+
+= link_to 'Edit', edit_request_path(@request)
