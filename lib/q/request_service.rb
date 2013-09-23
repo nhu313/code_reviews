@@ -19,6 +19,10 @@ module Q
       db_service.find({:id => request_id})
     end
 
+    def next_request_in_queue(user_id)
+      db_service.all.detect {|request| request.user_id != user_id}
+    end
+
     private
     attr_reader :db_service
   end

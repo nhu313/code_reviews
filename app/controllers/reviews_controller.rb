@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
     session[:user_id] = 1
     if user_id
       @requests = request_service.requests_for(user_id)
+      @request_in_queue = request_service.next_request_in_queue(user_id)
       render action: "index"
     else
       redirect_to signin_url
@@ -21,5 +22,4 @@ class ReviewsController < ApplicationController
   def request_service
     Q::RequestService.new(db_service)
   end
-
 end

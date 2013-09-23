@@ -17,6 +17,10 @@ module Q
       model.where(filter)
     end
 
+    def all
+      model.all
+    end
+
     private
     attr_reader :model
   end
