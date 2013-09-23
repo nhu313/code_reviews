@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    session[:user_id] = user_service.get_user_id(request.env["omniauth.auth"])
+    session[:user_id] = user_service.user_id_for(request.env["omniauth.auth"])
     redirect_to root_url
   end
 

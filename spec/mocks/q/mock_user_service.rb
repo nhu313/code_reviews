@@ -4,7 +4,7 @@ require 'q/user_service'
 module Q
   class MockUserService
     Surrogate.endow(self)
-    define(:get_user_id) {|auth| 1}
+    define(:user_id_for) {|auth| 1}
   end
 
   describe UserService do

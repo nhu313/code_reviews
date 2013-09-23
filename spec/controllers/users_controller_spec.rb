@@ -28,7 +28,7 @@ describe UsersController do
 
     it "gets the user" do
       get :create
-      @user_service.was told_to(:get_user_id)
+      @user_service.was told_to(:user_id_for)
     end
 
     it "redirect user to reviews page" do
