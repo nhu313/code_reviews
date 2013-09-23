@@ -1,5 +1,3 @@
 class User < ActiveRecord::Base
-  def create!
-
-  end
+  validates :uid, :presence => true
 end

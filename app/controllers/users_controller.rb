@@ -1,7 +1,8 @@
 require 'q/user_service'
+require 'q/db_service'
 
 class UsersController < ApplicationController
-  attr_writer :user_service
+  attr_writer :user_service, :db_service
 
   def signin
     render(:layout => "layouts/signin")
@@ -19,7 +20,11 @@ class UsersController < ApplicationController
 
   private
   def user_service
-    @user_service ||= Q::UserService.new
+    @user_service ||= Q::UserService.new(db_service)
+  end
+
+  def db_service
+    @db_service ||= Q::DBService.new(User)
   end
 
 end
