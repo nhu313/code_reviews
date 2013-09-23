@@ -1,9 +1,10 @@
 = flash[:notice]
 = content_for(:title) {"Reviews"}
 
-.queue
-  %h2 queue
-  = link_to @presenter.request_in_queue.title, @presenter.request_in_queue
+- if @presenter.request_in_queue
+  .queue
+    %h2 queue
+    = link_to @presenter.request_in_queue.title, @presenter.request_in_queue
 
 .box
   %h3 Submitted Request
