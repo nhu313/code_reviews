@@ -5,7 +5,8 @@ require 'mocks/q/mock_data'
 
 describe RequestsController do
   let(:model) {Q::MockModel.new}
-  let(:service) {Q::RequestService.new(model)}
+  let(:service) {Q::MockRequestService.new(model)}
+
   before(:each) do
     @controller.service = service
   end
@@ -18,10 +19,10 @@ describe RequestsController do
 
     it "assigns the requested request as @request" do
       id = 112
-      model.data = [Q::MockData.new(id)]
-
+      request = "fake request"
+      service.will_find request
       get :show, {:id => id}
-      assigns(:request).should == model.data.first
+      assigns(:request).should == request
     end
   end
 
@@ -36,4 +37,14 @@ describe RequestsController do
       assigns(:request).should be_a_new(Request)
     end
   end
+
+  describe "POST create" do
+    it "post create" do
+      request = "request"
+      service.will_create request
+      post :create, {:request => "nothing"}
+      assigns(:request).should == request
+    end
+  end
+
 end

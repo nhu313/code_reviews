@@ -12,15 +12,11 @@ class RequestsController < ApplicationController
   end
 
   def create
-    @request = service.create(user_id, request_params)
+    @request = service.create(user_id, params.require(:request))
     redirect_to show
   end
 
   private
-    def request_params
-      params.require(:request).permit(:title, :url, :description)
-    end
-
     def service
       @service ||= Q::RequestService.new(Request)
     end

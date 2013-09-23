@@ -12,10 +12,6 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def model
-    Request
-  end
-
   private
   def request_service
     Q::RequestService.new(Request)

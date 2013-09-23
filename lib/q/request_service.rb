@@ -7,9 +7,13 @@ module Q
       @db_service = Q::DBService.new(model)
     end
 
-    def create(user_id, attributes)
-      attributes[:user_id] = user_id
-      attributes[:date_posted] = Date.current
+    def create(user_id, params)
+      attributes = Hash[:title => params[:title],
+                        :url => params[:url],
+                        :description => params[:description],
+                        :user_id => user_id,
+                        :posted_date => DateTime.now]
+
       @request = db_service.create(attributes)
     end
 
