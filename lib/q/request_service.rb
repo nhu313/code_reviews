@@ -1,13 +1,15 @@
+require 'q/db_service'
+
 module Q
   class RequestService
 
-    def initialize(db_service)
-      @db_service = db_service
+    def initialize(model)
+      @db_service = Q::DBService.new(model)
     end
 
     def create(user_id, attributes)
       attributes[:user_id] = user_id
-      # attributes[:date_posted] = Date
+      attributes[:date_posted] = Date.current
       @request = db_service.create(attributes)
     end
 

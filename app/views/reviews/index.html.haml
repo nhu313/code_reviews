@@ -3,12 +3,12 @@
 
 .queue
   %h2 queue
-  = link_to @request_in_queue.title, @request_in_queue
+  = link_to @presenter.request_in_queue.title, @presenter.request_in_queue
 
 .box
   %h3 Submitted Request
   %ul
-    - @requests.each do |request|
+    - @presenter.requests.each do |request|
       %li
         = link_to request.title, request
 

@@ -10,8 +10,4 @@ class ApplicationController < ActionController::Base
   def user_id
     session[:user_id]
   end
-
-  def db_service
-    Q::DBService.new(model)
-  end
 end

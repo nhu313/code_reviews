@@ -2,14 +2,14 @@ require 'q/user_service'
 require 'q/db_service'
 
 class UsersController < ApplicationController
-  attr_writer :user_service, :db_service
+  attr_writer :service
 
   def signin
     render(:layout => "layouts/signin")
   end
 
   def create
-    session[:user_id] = user_service.user_id_for(request.env["omniauth.auth"])
+    session[:user_id] = service.user_id_for(request.env["omniauth.auth"])
     redirect_to root_url
   end
 
@@ -19,12 +19,7 @@ class UsersController < ApplicationController
   end
 
   private
-  def user_service
-    @user_service ||= Q::UserService.new(db_service)
+  def service
+    @service ||= Q::UserService.new(User)
   end
-
-  def db_service
-    @db_service ||= Q::DBService.new(User)
-  end
-
 end

@@ -1,6 +1,4 @@
 CodeReview::Application.routes.draw do
-  resources :requests
-
   root :to => "reviews#index"
 
   # USER
@@ -8,5 +6,10 @@ CodeReview::Application.routes.draw do
   get "auth/google_oauth2/callback" => "users#create"
   get "users/signin" => "users#signin", :as => :signin
   get "users/create_user" => "users#create"
+
+  #REQUEST
+  get "requests/new" => "requests#new", :as => :new_request
+  get "requests/:id" => "requests#show"
+  post "requests" => "requests#create"
 
 end

@@ -1,8 +1,10 @@
+require 'q/db_service'
+
 module Q
   class UserService
 
-    def initialize(db_service)
-      @db_service = db_service
+    def initialize(model)
+      @db_service = Q::DBService.new(model)
     end
 
     def user_id_for(auth)

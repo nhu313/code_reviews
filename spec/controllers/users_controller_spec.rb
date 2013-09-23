@@ -21,14 +21,15 @@ describe UsersController do
   end
 
   context "create" do
+    let(:user_service){Q::MockUserService.new}
+
     before :each do
-      @user_service = Q::MockUserService.new
-      @controller.user_service = @user_service
+      @controller.service = user_service
     end
 
     it "gets the user" do
       get :create
-      @user_service.was told_to(:user_id_for)
+      user_service.was told_to(:user_id_for)
     end
 
     it "redirect user to reviews page" do

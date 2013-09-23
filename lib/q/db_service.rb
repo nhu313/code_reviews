@@ -10,7 +10,8 @@ module Q
     end
 
     def find(filter)
-      model.where(filter).first
+      object = model.where(filter)
+      object.first if object
     end
 
     def find_all(filter)
