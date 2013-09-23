@@ -9,7 +9,7 @@ CodeReview::Application.routes.draw do
 
   #REQUEST
   get "requests/new" => "requests#new", :as => :new_request
-  get "requests/:id" => "requests#show"
+  get "requests/:id" => "requests#show", :as => :request
   post "requests" => "requests#create"
 
 end

@@ -4,7 +4,7 @@ class RequestsController < ApplicationController
   attr_writer :service
 
   def show
-    @request = service.find(params["id"].to_i)
+    @request ||= service.find(params["id"].to_i)
   end
 
   def new
@@ -13,6 +13,7 @@ class RequestsController < ApplicationController
 
   def create
     @request = service.create(user_id, request_params)
+    redirect_to show
   end
 
   private
