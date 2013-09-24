@@ -1,15 +1,30 @@
 = flash[:notice]
-= content_for(:title) {"Reviews"}
+- content_for(:title) {"Reviews"}
+= content_for(:head) {stylesheet_link_tag "reviews", media: "all", "data-turbolinks-track" => true}
 
 - if @presenter.request_in_queue
   .queue
-    %h2 queue
-    = link_to @presenter.request_in_queue.title, @presenter.request_in_queue
-
-.box
-  %h3 Submitted Request
+    .queue_link
+      %ul
+        %li
+          = link_to "Take Request", @presenter.request_in_queue
+        %li
+          = link_to "Skip", @presenter.request_in_queue
+    .queue_body
+      .queue_title
+        = link_to @presenter.request_in_queue_title, @presenter.request_in_queue
+      %br
+      = link_to truncate(@presenter.request_in_queue_description, :length => 20), @presenter.request_in_queue
+.reviews
   %ul
-    - @presenter.requests.each do |request|
-      %li
-        = link_to request.title, request
-
+    %li.reviews_box
+      %h2 My Requests
+      %ul
+        - @presenter.requests.each do |request|
+          %li.pending
+            = link_to request.title, request
+    %li.reviews_box
+      %h2 Reviewing Requests
+      %ul
+        %li.in_progress In Progress
+        %li.pending Waiting to review

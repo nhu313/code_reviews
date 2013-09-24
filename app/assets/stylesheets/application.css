@@ -96,11 +96,6 @@ nav a:hover, nav a:active {
   font-size: 1.1em;
 }
 
-.greeting a {
-  color: #ADADAD;
-}
-
-
 hr {
   color: #FF0E4A;
   height: 1px;
@@ -134,9 +129,18 @@ fieldset label {
 }
 
 a {
-  color: #FF0E4A;
+  color: #222;
 }
 
 #main-content {
   padding: 1em;
+}
+
+.signout{
+  background: #DDD;
+  padding: 0.3em;
+}
+
+.greeting a {
+  color: #222;
 }

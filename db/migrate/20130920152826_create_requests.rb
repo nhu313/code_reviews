@@ -3,7 +3,7 @@ class CreateRequests < ActiveRecord::Migration
     create_table :requests do |t|
       t.string :title
       t.string :url
-      t.date :date_posted
+      t.date :posted_date
       t.text :description
       t.integer :user_id
 
