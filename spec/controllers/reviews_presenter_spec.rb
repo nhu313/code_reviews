@@ -15,7 +15,7 @@ describe ReviewsPresenter do
     next_request = "request"
     service.will_have_next_request_in_queue next_request
     presenter = ReviewsPresenter.new(service, 1)
-    presenter.rqeuest_in_queue.should == next_request
+    presenter.request_in_queue.should == next_request
   end
 
 end

@@ -4,7 +4,7 @@ class CreateReviews < ActiveRecord::Migration
       t.string :url
       t.text :comment
       t.date :posted_date
-      t.interger :reviewer_id
+      t.integer :reviewer_id
 
       t.timestamps
     end

@@ -202,17 +202,17 @@
         null,
         null
       ],
-      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/user.rb": [
+      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/request.rb": [
         1,
         1,
         null
       ],
-      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/request.rb": [
+      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/user.rb": [
         1,
         1,
         null
       ]
     },
-    "timestamp": 1380044184
+    "timestamp": 1380045992
   }
 }
