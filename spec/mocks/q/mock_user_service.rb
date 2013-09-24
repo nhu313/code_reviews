@@ -1,19 +1,15 @@
 require 'surrogate/rspec'
-require 'q/request_service'
+require 'q/user_service'
 
 module Q
-  class MockRequestService
+  class MockUserService
     Surrogate.endow(self)
-    define(:initialize) {|model = "model"| }
-    define(:create) {|user_id, attributes|}
-    define(:requests_for) {|user_id|}
-    define(:find) {|request_id|}
-    define(:next_request_in_queue) {|user_id|}
+    define(:user_id_for) {|auth| 1}
   end
 
-  describe RequestService do
-    it "checks if MockRequestService is implemented correctly" do
-      MockRequestService.should be_substitutable_for(RequestService)
+  describe UserService do
+    it "checks UserService" do
+      MockUserService.should be_substitutable_for(UserService)
     end
   end
 end

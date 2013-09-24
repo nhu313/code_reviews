@@ -1,6 +1,6 @@
-require 'q/request_service'
+require 'q/review_request_service'
 
-class RequestsController < ApplicationController
+class ReviewRequestsController < ApplicationController
   attr_writer :service
 
   def show
@@ -18,6 +18,6 @@ class RequestsController < ApplicationController
 
   private
     def service
-      @service ||= Q::RequestService.new(Request)
+      @service ||= Q::ReviewRequestService.new(Request)
     end
 end

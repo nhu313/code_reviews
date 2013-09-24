@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'mocks/q/mock_request_service'
+require 'mocks/q/mock_review_request_service'
 
 describe ReviewsPresenter do
-  let(:service) {Q::MockRequestService.new}
+  let(:service) {Q::MockReviewRequestService.new}
 
   it "gets the requests for the user" do
     requests = "requests"

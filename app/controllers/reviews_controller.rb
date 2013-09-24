@@ -1,4 +1,4 @@
-require 'q/request_service'
+require 'q/review_request_service'
 require 'q/db_service'
 
 class ReviewsController < ApplicationController
@@ -14,6 +14,6 @@ class ReviewsController < ApplicationController
 
   private
   def request_service
-    Q::RequestService.new(Request)
+    Q::ReviewRequestService.new(Request)
   end
 end

@@ -8,8 +8,8 @@ CodeReview::Application.routes.draw do
   get "users/create_user" => "users#create"
 
   #REQUEST
-  get "requests/new" => "requests#new", :as => :new_request
-  get "requests/:id" => "requests#show", :as => :request
-  post "requests" => "requests#create"
+  get "requests/new" => "review_requests#new", :as => :new_request
+  get "requests/:id" => "review_requests#show", :as => :request
+  post "requests" => "review_requests#create"
 
 end

@@ -1,11 +1,10 @@
 class ReviewsPresenter
-  attr_accessor :service
   attr_reader :requests, :request_in_queue
 
-  def initialize(service, user_id)
-    @service = service
-    @requests = service.requests_for(user_id)
-    @request_in_queue = service.next_request_in_queue(user_id)
+  def initialize(request_service, user_id)
+    @request_service = request_service
+    @requests = request_service.requests_for(user_id)
+    @request_in_queue = request_service.next_request_in_queue(user_id)
   end
 
   def request_in_queue_title

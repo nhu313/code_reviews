@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'q/request_service'
+require 'q/review_request_service'
 require 'mocks/q/mock_model'
 require 'mocks/q/mock_data'
 
-describe RequestsController do
+describe ReviewRequestsController do
   let(:model) {Q::MockModel.new}
-  let(:service) {Q::MockRequestService.new(model)}
+  let(:service) {Q::MockReviewRequestService.new(model)}
 
   before(:each) do
     @controller.service = service

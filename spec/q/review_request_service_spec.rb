@@ -1,11 +1,11 @@
 require 'spec_helper'
-require 'q/request_service'
+require 'q/review_request_service'
 require 'mocks/q/mock_model'
 
 module Q
-  describe RequestService do
+  describe ReviewRequestService do
     let(:model) {MockModel.new}
-    let(:service) {RequestService.new(model)}
+    let(:service) {ReviewRequestService.new(model)}
     let(:user_id) {5444}
 
     context "create request" do

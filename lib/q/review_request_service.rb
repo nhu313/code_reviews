@@ -1,7 +1,7 @@
 require 'q/db_service'
 
 module Q
-  class RequestService
+  class ReviewRequestService
 
     def initialize(model)
       @db_service = Q::DBService.new(model)
