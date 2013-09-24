@@ -1,6 +1,4 @@
 CodeReview::Application.routes.draw do
-  resources :replies
-
   root :to => "reviews#index"
 
   # USER
@@ -13,5 +11,10 @@ CodeReview::Application.routes.draw do
   get "requests/new" => "review_requests#new", :as => :new_request
   get "requests/:id" => "review_requests#show", :as => :request
   post "requests" => "review_requests#create"
+
+  #REVIEWS
+  get "reviews/new" => "reviews#new", :as => :new_review
+  get "reviews/:id" => "reviews#show", :as => :review
+  post "reviews" => "reviews#create"
 
 end

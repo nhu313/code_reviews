@@ -13,7 +13,7 @@ class ReviewRequestsController < ApplicationController
 
   def create
     @request = service.create(user_id, params.require(:request))
-    redirect_to show
+    render "show"
   end
 
   private

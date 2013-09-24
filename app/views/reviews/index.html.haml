@@ -6,9 +6,9 @@
   .queue
     .queue_link
       %ul
-        %li
+        %li.take_request
           = link_to "Take Request", @presenter.request_in_queue
-        %li
+        %li.skip_request
           = link_to "Skip", @presenter.request_in_queue
     .queue_body
       .queue_title

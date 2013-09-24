@@ -28,14 +28,20 @@
   display: inline-block;
 }
 
-.queue_link li {
-  background: #EFEFEF;
+.skip_request {
+  background: #FF0E4A;
+  padding: 0.3em;
+  margin-bottom: .3em;
+}
+
+.take_request {
+  background: #71B101;
   padding: 0.3em;
   margin-bottom: .3em;
 }
 
 .queue_link a {
-  color: #FF0E4A;
+  color: #EFEFEF;
   text-transform: uppercase;
 }
 

@@ -2,6 +2,7 @@ require 'spec_helper'
 require 'q/review_request_service'
 require 'mocks/q/mock_model'
 require 'mocks/q/mock_data'
+require 'mocks/q/mock_review_request_service'
 
 describe ReviewRequestsController do
   let(:model) {Q::MockModel.new}
@@ -44,6 +45,11 @@ describe ReviewRequestsController do
       service.will_create request
       post :create, {:request => "nothing"}
       assigns(:request).should == request
+    end
+
+    it "render the correct template" do
+      post :create, {:request => "nothing"}
+      assigns(:request).should render_template "show"
     end
   end
 
