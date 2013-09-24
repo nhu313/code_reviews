@@ -1,4 +1,6 @@
 CodeReview::Application.routes.draw do
+  resources :replies
+
   root :to => "reviews#index"
 
   # USER
