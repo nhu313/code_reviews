@@ -28,4 +28,5 @@ group :test, :development do
   gem 'surrogate'
   gem 'simplecov'
   gem "database_cleaner", "<1.1.0"
+  gem 'table_print'
 end

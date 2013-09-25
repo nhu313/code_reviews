@@ -35,15 +35,14 @@ describe ReviewsController do
     end
   end
 
-  describe "GET new" do
-    it "gets new" do
-      get :new
-      response.should be_success
+  describe "take request" do
+    it "redirect to root path" do
+      post :take_request, {:review_request_id => 3}
+      response.should redirect_to root_path
     end
 
-    it "assigns a new request as @request" do
-      get :new
-      assigns(:review).should be_a_new(Review)
+    it "asks review service to handle request" do
+      post :take_request, {:review_request_id => 3}
     end
   end
 
@@ -57,7 +56,7 @@ describe ReviewsController do
 
     it "shows the review after create" do
       post :create, {:review => "ehhh"}
-      assigns(:review).should render_template "show"
+      assigns(:review).should render_template :show
     end
   end
 end
@@ -77,5 +76,9 @@ class MockReviewService
 
   def will_create(review)
     @review = review
+  end
+
+  def create_review(user_id, review_request_id)
+
   end
 end

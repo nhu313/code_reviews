@@ -26,7 +26,8 @@ module Q
     end
 
     def next_request_in_queue(user_id)
-      db_service.all.detect {|request| request.user_id != user_id}
+      db_service.all.detect { |request| request.user_id != user_id and !request.review
+      }
     end
 
     private

@@ -42,15 +42,25 @@ module Q
       end
 
       it "gets the next request in queue" do
-        model.data = [MockRequest.new(user_id), MockRequest.new(user_id + 1)]
-        service.next_request_in_queue(user_id).user_id.should_not == user_id
+        mock_requests
+        request_in_queue = service.next_request_in_queue(user_id)
+        request_in_queue.user_id.should_not == user_id
+        request_in_queue.review.should be_nil
+      end
+
+      def mock_requests
+        user_request = MockRequest.new(user_id)
+        taken_request = MockRequest.new(user_id + 1)
+        taken_request.review = "taken"
+        not_taken_request = MockRequest.new(user_id + 1)
+        model.data = [user_request, taken_request, not_taken_request]
       end
     end
   end
 end
 
 class MockRequest
-  attr_accessor :user_id
+  attr_accessor :user_id, :review
 
   def initialize(user_id)
     @user_id = user_id

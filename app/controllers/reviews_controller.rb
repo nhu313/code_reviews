@@ -6,15 +6,16 @@ class ReviewsController < ApplicationController
 
   def index
     if user_id
-      @presenter = ReviewsPresenter.new(request_service, user_id)
+      @presenter = ReviewsPresenter.new(user_id, request_service, review_service)
       render action: "index"
     else
       redirect_to signin_url
     end
   end
 
-  def new
-    @review = Review.new
+  def take_request
+    review_service.create_review(user_id, params["review_request_id"])
+    redirect_to root_path
   end
 
   def show
@@ -23,7 +24,7 @@ class ReviewsController < ApplicationController
 
   def create
     @review = review_service.create(user_id, params.require(:review))
-    render "show"
+    render :show
   end
 
   private

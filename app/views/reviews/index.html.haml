@@ -7,7 +7,7 @@
     .queue_link
       %ul
         %li.take_request
-          = link_to "Take Request", @presenter.request_in_queue
+          = link_to "Take Request", take_request_path(@presenter.request_in_queue), {method: :post}
         %li.skip_request
           = link_to "Skip", @presenter.request_in_queue
     .queue_body
@@ -26,5 +26,6 @@
     %li.reviews_box
       %h2 Reviewing Requests
       %ul
-        %li.in_progress In Progress
-        %li.pending Waiting to review
+        - @presenter.reviews.each do |review|
+          %li.in_progress
+            = review.reviewer_id

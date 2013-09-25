@@ -13,7 +13,7 @@ CodeReview::Application.routes.draw do
   post "requests" => "review_requests#create"
 
   #REVIEWS
-  get "reviews/new" => "reviews#new", :as => :new_review
+  post "reviews/take_request/:review_request_id" => "reviews#take_request", :as => :take_request
   get "reviews/:id" => "reviews#show", :as => :review
   post "reviews" => "reviews#create"
 
