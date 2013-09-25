@@ -1,6 +1,7 @@
 require 'spec_helper'
 require 'q/review_request_service'
 require 'mocks/q/mock_model'
+require 'mocks/q/mock_review_request'
 
 module Q
   describe ReviewRequestService do
@@ -31,7 +32,7 @@ module Q
       it "finds the request given a request id" do
         request_id = 88422;
         service.find(request_id)
-        model.filter.should == {:id => request_id}
+        model.id.should == request_id
       end
 
       it "finds all the requests for" do
@@ -42,27 +43,19 @@ module Q
       end
 
       it "gets the next request in queue" do
-        mock_requests
+        mock_return_requests
         request_in_queue = service.next_request_in_queue(user_id)
         request_in_queue.user_id.should_not == user_id
-        request_in_queue.review.should be_nil
+        request_in_queue.review_reply.should be_nil
       end
 
-      def mock_requests
-        user_request = MockRequest.new(user_id)
-        taken_request = MockRequest.new(user_id + 1)
-        taken_request.review = "taken"
-        not_taken_request = MockRequest.new(user_id + 1)
+      def mock_return_requests
+        user_request = MockReviewRequest.new(user_id)
+        taken_request = MockReviewRequest.new(user_id + 1)
+        taken_request.review_reply = "taken"
+        not_taken_request = MockReviewRequest.new(user_id + 1)
         model.data = [user_request, taken_request, not_taken_request]
       end
     end
-  end
-end
-
-class MockRequest
-  attr_accessor :user_id, :review
-
-  def initialize(user_id)
-    @user_id = user_id
   end
 end

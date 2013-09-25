@@ -1,7 +1,7 @@
 require 'spec_helper'
-require 'mocks/q/mock_model'
 require 'q/user_service'
 require 'mocks/q/mock_data'
+require 'mocks/q/mock_model'
 
 module Q
   describe UserService do

@@ -23,7 +23,7 @@ describe ReviewRequestsController do
       request = "fake request"
       service.will_find request
       get :show, {:id => id}
-      assigns(:request).should == request
+      assigns(:review_request).should == request
     end
   end
 
@@ -35,7 +35,7 @@ describe ReviewRequestsController do
 
     it "assigns a new request as @request" do
       get :new
-      assigns(:request).should be_a_new(Request)
+      assigns(:review_request).should be_a_new(ReviewRequest)
     end
   end
 
@@ -43,13 +43,13 @@ describe ReviewRequestsController do
     it "post create" do
       request = "request"
       service.will_create request
-      post :create, {:request => "nothing"}
-      assigns(:request).should == request
+      post :create, {:review_request => "nothing"}
+      assigns(:review_request).should == request
     end
 
     it "render the correct template" do
-      post :create, {:request => "nothing"}
-      assigns(:request).should render_template "show"
+      post :create, {:review_request => "nothing"}
+      assigns(:review_request).should render_template "show"
     end
   end
 

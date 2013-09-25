@@ -22,7 +22,7 @@ module Q
     context "Find" do
       it "find a record based on attributes" do
         service.create(user_attributes(uid))
-        user = service.find({:uid => uid})
+        user = service.find_first({:uid => uid})
         user.uid.should == uid
         user.destroy
       end
@@ -34,8 +34,14 @@ module Q
         delete_multiple_users(users)
       end
 
-      it "should find anything if data doesn't exist" do
-        service.find({:uid => uid}).should be_nil
+      it "should not find anything if data doesn't exist" do
+        service.find_first({:uid => uid}).should be_nil
+      end
+
+      it "find a record based on id" do
+        user = service.create(user_attributes(uid))
+        service.find_by_id(user.id).should == user
+        user.destroy
       end
     end
 

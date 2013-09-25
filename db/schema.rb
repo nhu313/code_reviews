@@ -13,22 +13,22 @@
 
 ActiveRecord::Schema.define(version: 20130924175206) do
 
-  create_table "requests", force: true do |t|
+  create_table "review_replies", force: true do |t|
+    t.string   "url"
+    t.text     "comment"
+    t.date     "posted_date"
+    t.integer  "reviewer_id"
+    t.integer  "review_request_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "review_requests", force: true do |t|
     t.string   "title"
     t.string   "url"
     t.date     "posted_date"
     t.text     "description"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "reviews", force: true do |t|
-    t.string   "url"
-    t.text     "comment"
-    t.date     "posted_date"
-    t.integer  "reviewer_id"
-    t.integer  "request_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

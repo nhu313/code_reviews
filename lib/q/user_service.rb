@@ -8,7 +8,7 @@ module Q
     end
 
     def user_id_for(auth)
-      user = db_service.find({:uid => auth["uid"]}) || create_user(auth)
+      user = db_service.find_first({:uid => auth["uid"]}) || create_user(auth)
       user.id
     end
 

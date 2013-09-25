@@ -27,5 +27,5 @@
       %h2 Reviewing Requests
       %ul
         - @presenter.reviews.each do |review|
-          %li.in_progress
+          %li.pending
             = review.reviewer_id

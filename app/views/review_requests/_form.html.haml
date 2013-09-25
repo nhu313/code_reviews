@@ -1,10 +1,10 @@
 = content_for(:title) {"Create Request"}
-= form_for @request, url: {action: "create"} do |f|
-  - if @request.errors.any?
+= form_for @review_request, url: {action: "create"} do |f|
+  - if @review_request.errors.any?
     #error_explanation
-      %h2 #{pluralize(@request.errors.count, "error")} prohibited this project from being saved:
+      %h2 #{pluralize(@review_request.errors.count, "error")} prohibited this project from being saved:
       %ul
-        -@request.errors.full_messages.each do |msg|
+        -@review_request.errors.full_messages.each do |msg|
           %li=msg
   %table
     %tr.field

@@ -26,6 +26,15 @@ module Q
       data
     end
 
+    def find(id)
+      @id = id
+    end
+
+    def find_by(filter)
+      @filter = filter
+      data.first if data
+    end
+
     def all
       data
     end

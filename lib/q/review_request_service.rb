@@ -22,12 +22,11 @@ module Q
     end
 
     def find(request_id)
-      db_service.find({:id => request_id})
+      db_service.find_by_id(request_id)
     end
 
     def next_request_in_queue(user_id)
-      db_service.all.detect { |request| request.user_id != user_id and !request.review
-      }
+      db_service.all.detect { |r| r.user_id != user_id and !r.review_reply}
     end
 
     private

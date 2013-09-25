@@ -1,20 +1,20 @@
-= content_for(:title) {@request.title}
+= content_for(:title) {@review_request.title}
 
 %p
   %b Title:
-  = @request.title
+  = @review_request.title
 %p
   %b Url:
-  = @request.url
+  = @review_request.url
 
 %p
   %b Date posted:
-  = @request.posted_date
+  = @review_request.posted_date
 
 %p
   %b Description:
-  = @request.description
+  = @review_request.description
 
 %p
   %b User:
-  = @request.user_id
+  = @review_request.user_id

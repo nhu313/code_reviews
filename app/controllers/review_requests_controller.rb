@@ -4,20 +4,20 @@ class ReviewRequestsController < ApplicationController
   attr_writer :service
 
   def show
-    @request ||= service.find(params["id"].to_i)
+    @review_request ||= service.find(params["id"].to_i)
   end
 
   def new
-    @request = Request.new
+    @review_request = ReviewRequest.new
   end
 
   def create
-    @request = service.create(user_id, params.require(:request))
+    @review_request = service.create(user_id, params.require(:review_request))
     render "show"
   end
 
   private
     def service
-      @service ||= Q::ReviewRequestService.new(Request)
+      @service ||= Q::ReviewRequestService.new(ReviewRequest)
     end
 end
