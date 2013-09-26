@@ -3,8 +3,9 @@ require 'q/db_service'
 module Q
   class ReviewRequestService
 
-    def initialize(model)
+    def initialize(model, user_id)
       @db_service = Q::DBService.new(model)
+      @user_id = user_id
     end
 
     def create(user_id, params)
@@ -17,7 +18,7 @@ module Q
       @request = db_service.create(attributes)
     end
 
-    def requests_for(user_id)
+    def user_requests
       db_service.find_all({:user_id => user_id})
     end
 
@@ -25,11 +26,11 @@ module Q
       db_service.find_by_id(request_id)
     end
 
-    def next_request_in_queue(user_id)
+    def next_request_in_queue
       db_service.all.detect { |r| r.user_id != user_id and !r.review_reply}
     end
 
     private
-    attr_reader :db_service
+    attr_reader :db_service, :user_id
   end
 end

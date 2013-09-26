@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
 
   def index
     if user_id
-      @presenter = ReviewsPresenter.new(user_id, request_service, reply_service)
+      @presenter = ReviewsPresenter.new(request_service, reply_service)
       render :index
     else
       redirect_to signin_url
@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
   end
 
   def take_request
-    reply_service.create_review(user_id, params["review_request_id"])
+    reply_service.create_review(params["review_request_id"])
     redirect_to root_path
   end
 
@@ -30,10 +30,10 @@ class ReviewsController < ApplicationController
 
   private
   def request_service
-    Q::ReviewRequestService.new(ReviewRequest)
+    Q::ReviewRequestService.new(ReviewRequest, user_id)
   end
 
   def reply_service
-    @reply_service ||= Q::ReviewReplyService.new(ReviewReply)
+    @reply_service ||= Q::ReviewReplyService.new(ReviewReply, user_id)
   end
 end

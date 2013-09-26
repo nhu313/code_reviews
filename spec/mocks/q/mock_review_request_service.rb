@@ -6,9 +6,9 @@ module Q
     Surrogate.endow(self)
     define(:initialize) {|model = "model"| }
     define(:create) {|user_id, attributes|}
-    define(:requests_for) {|user_id|}
+    define(:user_requests)
     define(:find) {|request_id|}
-    define(:next_request_in_queue) {|user_id|}
+    define(:next_request_in_queue)
   end
 
   describe ReviewRequestService do

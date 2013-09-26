@@ -3,19 +3,20 @@ require 'q/db_service'
 module Q
   class ReviewReplyService
 
-    def initialize(model)
+    def initialize(model, user_id)
       @db_service = Q::DBService.new(model)
+      @user_id = user_id
     end
 
     def find(review_id)
       db_service.find_by_id(review_id)
     end
 
-    def reviews_for(user_id)
+    def user_reviews
       db_service.find_all({:reviewer_id => user_id})
     end
 
-    def create_review(user_id, review_request_id)
+    def create_review(review_request_id)
       db_service.create({:reviewer_id => user_id,
                          :review_request_id => review_request_id})
     end
@@ -23,7 +24,7 @@ module Q
 
 
     private
-    attr_reader :db_service
+    attr_reader :db_service, :user_id
 
   end
 end

@@ -5,9 +5,9 @@ require 'mocks/q/mock_review_request'
 
 module Q
   describe ReviewRequestService do
-    let(:model) {MockModel.new}
-    let(:service) {ReviewRequestService.new(model)}
     let(:user_id) {5444}
+    let(:model) {MockModel.new}
+    let(:service) {ReviewRequestService.new(model, user_id)}
 
     context "create request" do
       it "creates a new request" do
@@ -38,13 +38,13 @@ module Q
       it "finds all the requests for" do
         data = ["1", "2"]
         model.data = data
-        service.requests_for(user_id).should == data
+        service.user_requests.should == data
         model.filter.should == {:user_id => user_id}
       end
 
       it "gets the next request in queue" do
         mock_return_requests
-        request_in_queue = service.next_request_in_queue(user_id)
+        request_in_queue = service.next_request_in_queue
         request_in_queue.user_id.should_not == user_id
         request_in_queue.review_reply.should be_nil
       end
