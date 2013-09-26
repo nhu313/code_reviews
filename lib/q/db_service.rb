@@ -9,6 +9,10 @@ module Q
       model.create!(attributes)
     end
 
+    def save(record)
+      record.save!
+    end
+
     def find_first(filter)
       model.find_by(filter)
     end

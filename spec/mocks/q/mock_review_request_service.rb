@@ -9,6 +9,7 @@ module Q
     define(:user_requests)
     define(:find) {|request_id|}
     define(:next_request_in_queue)
+    define(:valid?) {|params| true}
   end
 
   describe ReviewRequestService do

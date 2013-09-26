@@ -41,15 +41,26 @@ describe ReviewRequestsController do
 
   describe "POST create" do
     it "post create" do
+      post :create, {:review_request => "nothing"}
+      response.should be_success
+    end
+
+    it "assigns review request" do
       request = "request"
       service.will_create request
       post :create, {:review_request => "nothing"}
       assigns(:review_request).should == request
     end
 
-    it "render the correct template" do
+    it "renders show when form is valid" do
       post :create, {:review_request => "nothing"}
-      assigns(:review_request).should render_template "show"
+      assigns(:review_request).should render_template :show
+    end
+
+    it "returns user to the form when form is invalid" do
+      service.will_valid? false
+      post :create, {:review_request => "nothing"}
+      assigns(:review_request).should render_template :new
     end
   end
 

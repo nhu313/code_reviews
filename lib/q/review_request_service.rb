@@ -8,14 +8,14 @@ module Q
       @user_id = user_id
     end
 
-    def create(user_id, params)
-      attributes = Hash[:title => params[:title],
-                        :url => params[:url],
-                        :description => params[:description],
-                        :user_id => user_id,
-                        :posted_date => DateTime.now]
+    def create(user_id, attributes)
+      request_attributes = Hash[:title => attributes[:title],
+                                :url => attributes[:url],
+                                :description => attributes[:description],
+                                :user_id => user_id,
+                                :posted_date => DateTime.now]
 
-      @request = db_service.create(attributes)
+      db_service.create(request_attributes)
     end
 
     def user_requests
@@ -28,6 +28,13 @@ module Q
 
     def next_request_in_queue
       db_service.all.detect { |r| r.user_id != user_id and !r.review_reply}
+    end
+
+    def valid?(attributes)
+      return false if attributes.blank?
+      return false if attributes[:title].blank?
+      return false if attributes[:url].blank?
+      return true
     end
 
     private

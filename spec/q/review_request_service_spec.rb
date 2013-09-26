@@ -8,23 +8,21 @@ module Q
     let(:user_id) {5444}
     let(:model) {MockModel.new}
     let(:service) {ReviewRequestService.new(model, user_id)}
-
+    let(:params) {Hash[:title => "Blog title", :url => "some url", :description => "text**", :extra_param => "something"]}
     context "create request" do
       it "creates a new request" do
         posted_date = "now"
         DateTime.stub(:now).and_return(posted_date)
 
-        params = Hash[:title => "Blog title", :url => "some url", :description => "text**", :random => "something"]
-
-        request = service.create(user_id, params)
+        request = service.create(user_id, params.clone)
         model.attributes.should == expected_attributes(params, posted_date)
       end
 
-      def expected_attributes(params, posted_date)
-        params.delete(:random)
-        params[:user_id] = user_id
-        params[:posted_date] = posted_date
-        params
+      def expected_attributes(attributes, posted_date)
+        attributes.delete(:extra_param)
+        attributes[:user_id] = user_id
+        attributes[:posted_date] = posted_date
+        attributes
       end
     end
 
@@ -56,6 +54,37 @@ module Q
         not_taken_request = MockReviewRequest.new(user_id + 1)
         model.data = [user_request, taken_request, not_taken_request]
       end
+    end
+
+    context "validate" do
+      it "is invalid when attribute is nil" do
+        service.should_not be_valid(nil)
+      end
+
+      it "is invalid when there is no title" do
+        params.delete(:title)
+        service.should_not be_valid(params)
+      end
+
+      it "is invalid when there is no url" do
+        params.delete(:url)
+        service.should_not be_valid(params)
+      end
+
+      it "is invalid when there is a description but no title or url" do
+        params = Hash[:description => "text**"]
+        service.should_not be_valid(params)
+      end
+
+      it "is valid when there are title and url, and no description" do
+        params.delete(:description)
+        service.should be_valid(params)
+      end
+
+      it "is valid when there are title, url, and description" do
+        service.should be_valid(params)
+      end
+
     end
   end
 end
