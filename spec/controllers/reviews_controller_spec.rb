@@ -23,23 +23,46 @@ describe ReviewsController do
     end
   end
 
-  describe "GET show" do
+  describe "show" do
     let(:review){MockReviewReply.new("request")}
 
     before(:each) do
       reply_service.will_find review
     end
+    context "show" do
+      it "gets show" do
+        get :show, {:id => 11}
+        response.should be_success
+      end
 
-    it "gets show" do
-      get :show, {:id => 11}
-      response.should be_success
+      it "assigns the request" do
+        get :show, {:id => 188}
+        assigns(:review_request).should == review.review_request
+      end
+
+      it "assigns the reply" do
+        get :show, {:id => 188}
+        assigns(:review_reply).should == review
+      end
     end
 
-    it "assigns the requested" do
-      get :show, {:id => 188}
-      assigns(:review_reply).should == review
-      assigns(:review_request).should == review.review_request
+    context "edit" do
+      it "gets edit" do
+        get :edit, {:id => 11}
+        response.should be_success
+      end
+
+      it "assigns the request" do
+        get :edit, {:id => 188}
+        assigns(:review_request).should == review.review_request
+      end
+
+      it "assigns the reply" do
+        get :edit, {:id => 188}
+        assigns(:review_reply).should == review
+      end
     end
+
   end
 
   describe "take request" do

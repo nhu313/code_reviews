@@ -12,7 +12,7 @@ module Q
       db_service.find_by_id(review_id)
     end
 
-    def user_reviews
+    def user_replies
       db_service.find_all({:reviewer_id => user_id})
     end
 

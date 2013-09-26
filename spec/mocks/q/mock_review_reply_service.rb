@@ -6,7 +6,7 @@ module Q
     Surrogate.endow(self)
     define(:initialize) {|user_id = "user_id"| }
     define(:find){|id|}
-    define(:user_reviews)
+    define(:user_replies)
     define(:create_review){|params|}
   end
 

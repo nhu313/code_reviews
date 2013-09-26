@@ -18,6 +18,6 @@ class ReviewRequestsController < ApplicationController
 
   private
     def service
-      @service ||= Q::ReviewRequestService.new(ReviewRequest)
+      @service ||= Q::ReviewRequestService.new(ReviewRequest, user_id)
     end
 end

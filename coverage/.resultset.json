@@ -166,52 +166,25 @@
         null,
         null,
         1,
-        2,
+        3,
         null,
         null,
         1,
-        0,
+        3,
         null,
         null,
-        1,
-        1,
-        1,
-        null,
-        null,
-        1,
-        5,
-        null,
-        null,
-        1,
-        2,
-        2,
-        null,
-        null
-      ],
-      "/Users/nhunguyen/Documents/code_review/code_reviews/lib/q/review_service.rb": [
-        1,
-        1,
-        null,
-        1,
         1,
         1,
         1,
         null,
         null,
         1,
-        1,
+        9,
         null,
         null,
         1,
-        null,
-        null,
-        null,
-        1,
-        null,
-        null,
-        null,
-        1,
-        1,
+        6,
+        6,
         null,
         null
       ],
@@ -220,9 +193,10 @@
         1,
         null,
         1,
-        1,
-        1,
-        1,
+        4,
+        null,
+        4,
+        4,
         null,
         null,
         null,
@@ -282,14 +256,14 @@
         null,
         null
       ],
-      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/review_request.rb": [
+      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/user.rb": [
         1,
         1,
         1,
         1,
         null
       ],
-      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/user.rb": [
+      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/review_request.rb": [
         1,
         1,
         1,
@@ -297,6 +271,6 @@
         null
       ]
     },
-    "timestamp": 1380164408
+    "timestamp": 1380206715
   }
 }

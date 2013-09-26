@@ -19,7 +19,7 @@ module Q
       it "finds all the reviews for" do
         data = ["1", "2"]
         model.data = data
-        service.user_reviews.should == data
+        service.user_replies.should == data
         model.filter.should == {:reviewer_id => user_id}
       end
     end
