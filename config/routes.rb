@@ -14,9 +14,7 @@ CodeReview::Application.routes.draw do
 
   #REVIEWS
   post "reviews/take_request/:review_request_id" => "reviews#take_request", :as => :take_request
-  get "reviews/:id" => "reviews#show", :as => :review
-  post "reviews" => "reviews#create"
-
-  get "direct" => "reviews#direct"
+  get "reviews/:id" => "reviews#show", :as => :review_reply
+  get "reviews/edit/:id" => "reviews#edit", :as => :edit_review_reply
 
 end

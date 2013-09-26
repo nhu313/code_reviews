@@ -98,7 +98,7 @@ nav a:hover, nav a:active {
 
 hr {
   color: #FF0E4A;
-  height: 1px;
+  height: .01em;
 }
 
 h1, h2, h3, h4 {

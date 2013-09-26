@@ -1,0 +1,16 @@
+=render "review_requests/show"
+
+%p#notice= notice
+%hr
+%p
+  %strong Url:
+  = @reply.url
+%p
+  %strong Comment:
+  = @reply.comment
+%p
+  %strong Posted date:
+  = @reply.posted_date
+%p
+  %strong Reviewer:
+  = @reply.reviewer_id

@@ -1,0 +1,23 @@
+= form_for(@reply) do |f|
+  -if @reply.errors.any?
+    %div#error_explanation
+      %h2
+        = pluralize(@reply.errors.count, "error")
+
+      %ul
+      - @reply.errors.full_messages.each do |msg|
+        %li
+          = msg
+
+  %div.field
+    %b
+      = f.label :url
+    %br
+    = f.text_field :url, :size => 140
+  %div.field
+    %b
+      = f.label :comment
+    %br
+    = f.text_area :comment, :rows => 10, :cols => 100
+  %div.actions
+    = f.submit

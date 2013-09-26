@@ -12,20 +12,20 @@
           = link_to "Skip", @presenter.request_in_queue
     .queue_body
       .queue_title
-        = link_to @presenter.request_in_queue_title, @presenter.request_in_queue
+        = link_to @presenter.request_in_queue.title, @presenter.request_in_queue
       %br
-      = link_to truncate(@presenter.request_in_queue_description, :length => 20), @presenter.request_in_queue
+      = link_to truncate(@presenter.request_in_queue.description, :length => 100), @presenter.request_in_queue
 .reviews
   %ul
     %li.reviews_box
       %h2 My Requests
       %ul
-        - @presenter.requests.each do |request|
+        - @presenter.user_requests.each do |request|
           %li.pending
             = link_to request.title, request
     %li.reviews_box
       %h2 Reviewing Requests
       %ul
-        - @presenter.reviews.each do |review|
+        - @presenter.user_replies.each do |reply|
           %li.pending
-            = review.reviewer_id
+            = link_to reply.title, edit_review_reply_path(reply)

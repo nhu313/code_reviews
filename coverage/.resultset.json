@@ -116,11 +116,13 @@
         1,
         null,
         1,
-        0,
+        1,
+        1,
+        1,
         null,
         null,
         1,
-        null,
+        1,
         null,
         null,
         1,
@@ -289,6 +291,13 @@
         null,
         null
       ],
+      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/review_request.rb": [
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
       "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/review_reply.rb": [
         1,
         1,
@@ -301,15 +310,8 @@
         1,
         1,
         null
-      ],
-      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/review_request.rb": [
-        1,
-        1,
-        1,
-        1,
-        null
       ]
     },
-    "timestamp": 1380143535
+    "timestamp": 1380144268
   }
 }
