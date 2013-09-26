@@ -2,7 +2,7 @@ require 'q/review_request_service'
 require 'q/review_reply_service'
 
 class ReviewsController < ApplicationController
-  attr_writer :review_service, :reply_service
+  attr_writer :request_service, :reply_service
 
   def index
     if user_id
@@ -19,21 +19,24 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @reply ||= reply_service.find(params["id"].to_i)
-    @review_request = @reply.review_request
+    set_current_review
   end
 
   def edit
-    @reply ||= reply_service.find(params["id"].to_i)
-    @review_request = @reply.review_request
+    set_current_review
   end
 
   private
   def request_service
-    Q::ReviewRequestService.new(ReviewRequest, user_id)
+    @request_service ||= Q::ReviewRequestService.new(ReviewRequest, user_id)
   end
 
   def reply_service
     @reply_service ||= Q::ReviewReplyService.new(ReviewReply, user_id)
+  end
+
+  def set_current_review
+    @review_reply ||= reply_service.find(params["id"].to_i)
+    @review_request = @review_reply.review_request
   end
 end

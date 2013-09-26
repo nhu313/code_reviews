@@ -1,11 +1,11 @@
-= form_for(@reply) do |f|
-  -if @reply.errors.any?
+= form_for(@review_reply) do |f|
+  -if @review_reply.errors.any?
     %div#error_explanation
       %h2
-        = pluralize(@reply.errors.count, "error")
+        = pluralize(@review_reply.errors.count, "error")
 
       %ul
-      - @reply.errors.full_messages.each do |msg|
+      - @review_reply.errors.full_messages.each do |msg|
         %li
           = msg
 
