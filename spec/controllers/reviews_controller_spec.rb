@@ -76,6 +76,18 @@ describe ReviewsController do
       reply_service.was told_to :create_review
     end
   end
+
+  describe "create reply" do
+    it "renders show" do
+      patch :submit_reply, {:id => 1}
+      response.should redirect_to :review_reply
+    end
+
+    it "asks service to submit reply" do
+      patch :submit_reply, {:id => 1}
+      reply_service.was told_to :submit_reply
+    end
+  end
 end
 
 class MockReviewReply

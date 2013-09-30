@@ -8,6 +8,7 @@ module Q
     define(:find){|id|}
     define(:user_replies)
     define(:create_review){|params|}
+    define(:submit_reply){|id, attributes|}
   end
 
   describe ReviewRequestService do

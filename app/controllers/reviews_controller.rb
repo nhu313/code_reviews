@@ -19,11 +19,16 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    set_current_review
+    set_review
   end
 
   def edit
-    set_current_review
+    set_review
+  end
+
+  def submit_reply
+    reply_service.submit_reply(review_reply_id, params[:review_reply])
+    redirect_to review_reply_url
   end
 
   private
@@ -35,8 +40,12 @@ class ReviewsController < ApplicationController
     @reply_service ||= Q::ReviewReplyService.new(ReviewReply, user_id)
   end
 
-  def set_current_review
-    @review_reply ||= reply_service.find(params["id"].to_i)
+  def set_review
+    @review_reply ||= reply_service.find(review_reply_id)
     @review_request = @review_reply.review_request
+  end
+
+  def review_reply_id
+    params[:id].to_i
   end
 end

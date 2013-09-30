@@ -21,7 +21,13 @@ module Q
                          :review_request_id => review_request_id})
     end
 
-
+    def submit_reply(id, attributes)
+      db_service.update(id, {
+        :url => attributes[:url],
+        :comment => attributes[:comment],
+        :posted_date => DateTime.now
+      })
+    end
 
     private
     attr_reader :db_service, :user_id

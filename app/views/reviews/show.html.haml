@@ -10,7 +10,7 @@
   = @review_reply.comment
 %p
   %strong Posted date:
-  = @review_reply.posted_date
+  = @review_reply.posted_date.to_formatted_s(:long)
 %p
   %strong Reviewer:
   = @review_reply.reviewer_id

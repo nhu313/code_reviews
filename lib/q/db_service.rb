@@ -29,6 +29,11 @@ module Q
       model.all
     end
 
+    def update(id, attributes)
+      m = find_by_id(id)
+      m.update_attributes(attributes)
+    end
+
     private
     attr_reader :model
   end

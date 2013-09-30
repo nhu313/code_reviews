@@ -28,6 +28,7 @@ module Q
 
     def find(id)
       @id = id
+      self
     end
 
     def find_by(filter)
@@ -37,6 +38,10 @@ module Q
 
     def all
       data
+    end
+
+    def update_attributes(attributes)
+      @attributes = attributes
     end
   end
 end

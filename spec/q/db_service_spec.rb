@@ -45,6 +45,20 @@ module Q
       end
     end
 
+    context "Updating a model" do
+      it "updates a record" do
+        db_user = service.create(user_attributes(uid))
+
+        new_email = "atom@atom.net"
+        service.update(db_user.id, {:email => new_email})
+
+        db_user = User.find_by_uid(uid)
+
+        db_user.email.should == new_email
+        db_user.destroy
+      end
+    end
+
     private
     def user_attributes(uid)
       user = Hash[:uid => uid,

@@ -1,13 +1,4 @@
-= form_for(@review_reply) do |f|
-  -if @review_reply.errors.any?
-    %div#error_explanation
-      %h2
-        = pluralize(@review_reply.errors.count, "error")
-
-      %ul
-      - @review_reply.errors.full_messages.each do |msg|
-        %li
-          = msg
+= form_for @review_reply, url: {action: "submit_reply"} do |f|
 
   %div.field
     %b
