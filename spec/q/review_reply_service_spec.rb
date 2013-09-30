@@ -7,7 +7,7 @@ module Q
   describe ReviewReplyService do
     let(:user_id) {4411}
     let(:model){MockModel.new}
-    let(:service){ReviewReplyService.new(model, user_id)}
+    let(:service){ReviewReplyService.new(user_id, model)}
 
     context "find" do
       it "finds the review given an id" do

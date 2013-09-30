@@ -3,8 +3,9 @@ require 'q/db_service'
 module Q
   class ReviewRequestService
 
-    def initialize(model, user_id)
-      @db_service = Q::DBService.new(model)
+    def initialize(user_id, request_model, skip_history_model)
+      @request_db_service = DBService.new(request_model)
+      @skip_history_service = DBService.new(skip_history_model)
       @user_id = user_id
     end
 
@@ -15,19 +16,19 @@ module Q
                                 :user_id => user_id,
                                 :posted_date => DateTime.now]
 
-      db_service.create(request_attributes)
+      request_db_service.create(request_attributes)
     end
 
     def user_requests
-      db_service.find_all({:user_id => user_id})
+      request_db_service.find_all({:user_id => user_id})
     end
 
     def find(request_id)
-      db_service.find_by_id(request_id)
+      request_db_service.find_by_id(request_id)
     end
 
     def next_request_in_queue
-      db_service.all.detect { |r| r.user_id != user_id and !r.review_reply}
+      request_db_service.all.detect { |r| r.user_id != user_id and !r.review_reply}
     end
 
     def valid?(attributes)
@@ -37,7 +38,11 @@ module Q
       return true
     end
 
+    def skip_request(request)
+
+    end
+
     private
-    attr_reader :db_service, :user_id
+    attr_reader :request_db_service, :user_id
   end
 end

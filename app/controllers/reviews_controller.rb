@@ -33,11 +33,11 @@ class ReviewsController < ApplicationController
 
   private
   def request_service
-    @request_service ||= Q::ReviewRequestService.new(ReviewRequest, user_id)
+    @request_service ||= Q::ReviewRequestService.new(user_id, ReviewRequest, SkipRequestHistory)
   end
 
   def reply_service
-    @reply_service ||= Q::ReviewReplyService.new(ReviewReply, user_id)
+    @reply_service ||= Q::ReviewReplyService.new(user_id, ReviewReply)
   end
 
   def set_review

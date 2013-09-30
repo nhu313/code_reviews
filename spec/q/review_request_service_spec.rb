@@ -6,8 +6,9 @@ require 'mocks/q/mock_review_request'
 module Q
   describe ReviewRequestService do
     let(:user_id) {5444}
-    let(:model) {MockModel.new}
-    let(:service) {ReviewRequestService.new(model, user_id)}
+    let(:request_model) {MockModel.new}
+    let(:skip_history_model) {MockModel.new}
+    let(:service) {ReviewRequestService.new(user_id, request_model, skip_history_model)}
     let(:params) {Hash[:title => "Blog title", :url => "some url", :description => "text**", :extra_param => "something"]}
     context "create request" do
       it "creates a new request" do
@@ -15,7 +16,7 @@ module Q
         DateTime.stub(:now).and_return(posted_date)
 
         request = service.create(user_id, params.clone)
-        model.attributes.should == expected_attributes(params, posted_date)
+        request_model.attributes.should == expected_attributes(params, posted_date)
       end
 
       def expected_attributes(attributes, posted_date)
@@ -30,14 +31,14 @@ module Q
       it "finds the request given a request id" do
         request_id = 88422;
         service.find(request_id)
-        model.id.should == request_id
+        request_model.id.should == request_id
       end
 
       it "finds all the requests for" do
         data = ["1", "2"]
-        model.data = data
+        request_model.data = data
         service.user_requests.should == data
-        model.filter.should == {:user_id => user_id}
+        request_model.filter.should == {:user_id => user_id}
       end
 
       it "gets the next request in queue" do
@@ -52,7 +53,7 @@ module Q
         taken_request = MockReviewRequest.new(user_id + 1)
         taken_request.review_reply = "taken"
         not_taken_request = MockReviewRequest.new(user_id + 1)
-        model.data = [user_request, taken_request, not_taken_request]
+        request_model.data = [user_request, taken_request, not_taken_request]
       end
     end
 
@@ -85,6 +86,19 @@ module Q
         service.should be_valid(params)
       end
 
+    end
+
+    context "skip request" do
+      it "takes the next request in queue when user hits skip" do
+
+
+      end
+
+      # it "saves the requests that the user skipped" do
+      #   request_id = 3
+      #   service.skip_request(request_id)
+      #   model.attributes.should == {:review_request_id => request_id}
+      # end
     end
   end
 end
