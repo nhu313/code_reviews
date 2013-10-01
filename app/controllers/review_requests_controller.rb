@@ -9,6 +9,8 @@ class ReviewRequestsController < ApplicationController
 
   def show
     @review_request = service.find(params["id"].to_i)
+    @review_reply = @review_request.review_reply if @review_request.completed?
+    render 'reviews/show'
   end
 
   def new

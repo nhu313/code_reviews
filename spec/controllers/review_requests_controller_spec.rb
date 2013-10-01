@@ -5,6 +5,7 @@ require 'mocks/q/mock_data'
 require 'mocks/q/mock_review_request_service'
 
 describe ReviewRequestsController do
+  let(:review_request_id) {113}
   let(:model) {Q::MockModel.new}
   let(:service) {Q::MockReviewRequestService.new(model)}
 
@@ -28,18 +29,41 @@ describe ReviewRequestsController do
   end
 
   describe "GET show" do
+    let(:review_reply){"some reply"}
+    let(:review_request){review_request = MockReviewRequest.new(1)
+                         review_request.review_reply = review_reply
+                         review_request}
+
+    before(:each) do
+      service.will_find review_request
+    end
+
     it "gets show" do
-      get :show, {:id => 11}
+      get :show, {:id => review_request_id}
       response.should be_success
     end
 
-    it "assigns the requested request as @request" do
-      id = 112
-      request = "fake request"
-      service.will_find request
-      get :show, {:id => id}
-      assigns(:review_request).should == request
+    it "assigns the requested request" do
+      get :show, {:id => review_request_id}
+      assigns(:review_request).should == review_request
     end
+
+    it "assigns the requested request reply when there is one" do
+      get :show, {:id => review_request_id}
+      assigns(:review_reply).should == review_reply
+    end
+
+    it "doesn't assign the requested request reply when there is none" do
+      review_request.review_reply = nil
+      get :show, {:id => review_request_id}
+      assigns(:review_reply).should be_nil
+    end
+
+    it "renders show from reply" do
+      get :show, {:id => review_request_id}
+      response.should render_template 'reviews/show'
+    end
+
   end
 
   describe "GET new" do

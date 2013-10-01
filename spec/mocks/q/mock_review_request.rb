@@ -4,6 +4,9 @@ class MockReviewRequest
   def initialize(user_id, id = 1)
     @user_id = user_id
     @id = id
-    @review_reply = review_reply
+  end
+
+  def completed?
+    true
   end
 end
