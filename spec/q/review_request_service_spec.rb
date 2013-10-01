@@ -89,16 +89,36 @@ module Q
     end
 
     context "skip request" do
+      let(:request_id){33}
+
+      it "saves the skip request" do
+        service.skip_request(request_id)
+        expected_attributes = {:user_id => user_id, :review_request_id => request_id}
+        skip_history_model.attributes.should == expected_attributes
+      end
+
+      it "updates the skip request history when user has skipped a request before" do
+        skip_history_model.data = [MockSkipRequestHistory.new(user_id)]
+        service.skip_request(request_id)
+        expected_attributes = {:review_request_id => request_id}
+        skip_history_model.attributes.should == expected_attributes
+      end
+
       it "takes the next request in queue when user hits skip" do
 
 
       end
 
-      # it "saves the requests that the user skipped" do
-      #   request_id = 3
-      #   service.skip_request(request_id)
-      #   model.attributes.should == {:review_request_id => request_id}
-      # end
     end
+  end
+end
+
+
+class MockSkipRequestHistory
+  attr_reader :user_id, :review_request_id, :id
+
+  def initialize(user_id, review_request_id = 1)
+    @user_id = user_id
+    @review_request_id = review_request_id
   end
 end
