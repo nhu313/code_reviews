@@ -1,7 +1,8 @@
 require 'q/review_request_service'
 
-describe "creating a new service" do
+describe "creating a new request" do
   let(:user_id) {1}
+  let(:another_user){2}
   let(:service) {Q::ReviewRequestService.new(user_id, ReviewRequest, SkipRequestHistory)}
   let(:params) {Hash[:title => "Blog title", :url => "some url", :description => "text**", :extra_param => "something"]}
 
@@ -40,78 +41,50 @@ describe "creating a new service" do
       }
     end
 
-    it "gets the next request in queue" do
-      create_requests(user_id + 1, 1)
+    xit "gets the next request in queue" do
+      create_requests(another_user, 1)
       request_in_queue = service.next_request_in_queue
       request_in_queue.user_id.should_not == user_id
       request_in_queue.review_reply.should be_nil
     end
 
-    it "gets the next request in queue when user has skip request history" do
-      # requests = create_requests(user_id + 1, 2)
-      # requests[0].id
-      # skip_history_model.data = [MockSkipRequestHistory.new(user_id, skipped_request_id)]
-      # mock_return_requests(skipped_request_id)
-      # request_in_queue = service.next_request_in_queue
-      # request_in_queue.id.should > skipped_request_id
+    xit "gets the next request in queue when user has skip request history" do
+      review_requests = create_requests(another_user, 2)
+      create_skip_history(review_requests[0].id)
+      request_in_queue = service.next_request_in_queue
+      request_in_queue.id.should == review_requests[1].id
     end
-    #
-    # def mock_return_requests(skipped_request_id = 1)
-    #   user_request = MockReviewRequest.new(user_id)
-    #   taken_request = MockReviewRequest.new(user_id + 1)
-    #   taken_request.review_reply = "taken"
-    #   skipped_request = MockReviewRequest.new(user_id + 1, skipped_request_id)
-    #   not_taken_request = MockReviewRequest.new(user_id + 1, skipped_request_id + 1)
-    #
-    #   request_model.data = [user_request, taken_request, skipped_request, not_taken_request]
-    # end
+
   end
 
   context "validate" do
-    # it "is invalid when attribute is nil" do
-    #   service.should_not be_valid(nil)
-    # end
-    #
-    # it "is invalid when there is no title" do
-    #   params.delete(:title)
-    #   service.should_not be_valid(params)
-    # end
-    #
-    # it "is invalid when there is no url" do
-    #   params.delete(:url)
-    #   service.should_not be_valid(params)
-    # end
-    #
-    # it "is invalid when there is a description but no title or url" do
-    #   params = Hash[:description => "text**"]
-    #   service.should_not be_valid(params)
-    # end
-    #
-    # it "is valid when there are title and url, and no description" do
-    #   params.delete(:description)
-    #   service.should be_valid(params)
-    # end
-    #
-    # it "is valid when there are title, url, and description" do
-    #   service.should be_valid(params)
-    # end
+    it "is false when user did not enter all the require attributes" do
+      params.delete(:title)
+      service.should_not be_valid(params)
+    end
 
+    it "is valid when user enters all the required fields" do
+      service.should be_valid(params)
+    end
   end
 
   context "skip request" do
-    # let(:request_id){33}
-    #
-    # it "saves the skip request" do
-    #   service.save_skipped_request(request_id)
-    #   expected_attributes = {:user_id => user_id, :review_request_id => request_id}
-    #   skip_history_model.attributes.should == expected_attributes
-    # end
-    #
+    let(:request_id){33}
+
+    it "saves the skip request" do
+      service.save_skipped_request(request_id)
+      SkipRequestHistory.find_by({:user_id => user_id}).review_request_id.should == request_id
+    end
+
     # it "updates the skip request history when user has skipped a request before" do
     #   skip_history_model.data = [MockSkipRequestHistory.new(user_id)]
     #   service.save_skipped_request(request_id)
     #   expected_attributes = {:review_request_id => request_id}
     #   skip_history_model.attributes.should == expected_attributes
     # end
+  end
+
+  def create_skip_history(review_request_id)
+    SkipRequestHistory.create({:user_id => user_id, :review_request_id => review_request_id})
   end
 end

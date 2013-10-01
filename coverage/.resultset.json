@@ -189,15 +189,15 @@
         null,
         null
       ],
-      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/review_request.rb": [
+      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/user.rb": [
+        1,
         1,
         1,
         1,
         1,
         null
       ],
-      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/user.rb": [
-        1,
+      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/review_request.rb": [
         1,
         1,
         1,
@@ -208,18 +208,8 @@
         1,
         1,
         null
-      ],
-      "/Users/nhunguyen/Documents/code_review/code_reviews/app/models/review_reply.rb": [
-        1,
-        1,
-        1,
-        null,
-        1,
-        0,
-        null,
-        null
       ]
     },
-    "timestamp": 1380643934
+    "timestamp": 1380652429
   }
 }
