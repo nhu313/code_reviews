@@ -13,4 +13,4 @@
     = @review_reply.posted_date.to_formatted_s(:long)
   %p
     %strong Reviewer:
-    = @review_reply.reviewer_id
+    = @review_reply.reviewer.first_name + ' ' + @review_reply.reviewer.last_name

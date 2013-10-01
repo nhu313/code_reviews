@@ -5,4 +5,8 @@ class ReviewReply < ActiveRecord::Base
   def title
     review_request.title
   end
+
+  def reviewer
+    user
+  end
 end
