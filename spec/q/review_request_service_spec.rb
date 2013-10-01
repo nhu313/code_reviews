@@ -10,6 +10,7 @@ module Q
     let(:skip_history_model) {MockModel.new}
     let(:service) {ReviewRequestService.new(user_id, request_model, skip_history_model)}
     let(:params) {Hash[:title => "Blog title", :url => "some url", :description => "text**", :extra_param => "something"]}
+
     context "create request" do
       it "creates a new request" do
         posted_date = "now"
