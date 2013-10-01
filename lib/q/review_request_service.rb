@@ -28,7 +28,10 @@ module Q
     end
 
     def next_request_in_queue
-      request_db_service.all.detect { |r| r.user_id != user_id and !r.review_reply}
+      skip_request_id = last_skip_request_id
+      request_db_service.all.detect do |r|
+        r.user_id != user_id and !r.review_reply and r.id > skip_request_id
+      end
     end
 
     def valid?(attributes)
@@ -40,6 +43,7 @@ module Q
 
     def skip_request(request_id)
       save_skip_request_history(request_id)
+      next_request_in_queue
     end
 
     private
@@ -52,6 +56,12 @@ module Q
       else
         skip_history_db_service.create({:user_id => user_id, :review_request_id => request_id})
       end
+    end
+
+    def last_skip_request_id
+      skip_request = skip_history_db_service.find_first({:user_id => user_id})
+      return skip_request.review_request_id if skip_request
+      return 0
     end
 
   end

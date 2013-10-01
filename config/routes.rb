@@ -18,5 +18,6 @@ CodeReview::Application.routes.draw do
   get "reviews/:id" => "reviews#show", :as => :review_reply
   get "reviews/:id/edit" => "reviews#edit", :as => :edit_review_reply
   patch "reviews/:id" => "reviews#submit_reply"
+  post "reviews/:review_request_id/skip_request" => "reviews#skip_request", :as => :skip_request
 
 end
