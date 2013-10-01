@@ -9,12 +9,16 @@ module Q
       @user_id = user_id
     end
 
-    def create(user_id, attributes)
-      request_attributes = Hash[:title => attributes[:title],
-                                :url => attributes[:url],
-                                :description => attributes[:description],
-                                :user_id => user_id,
-                                :posted_date => DateTime.now]
+    def extract_attributes(params)
+      Hash[ :title => params[:title],
+            :url => params[:url],
+            :description => params[:description]]
+    end
+
+    def create(user_id, params)
+      request_attributes = extract_attributes(params)
+      request_attributes[:user_id] = user_id
+      request_attributes[:posted_date] = DateTime.now
 
       request_db_service.create(request_attributes)
     end

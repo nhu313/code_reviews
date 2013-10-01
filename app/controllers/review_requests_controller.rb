@@ -18,7 +18,7 @@ class ReviewRequestsController < ApplicationController
       render :show
     else
       flash[:notice] = "Please enter all the required(*) fields."
-      @review_request = ReviewRequest.new
+      @review_request = ReviewRequest.new(service.extract_attributes(attributes))
       render :new
     end
   end

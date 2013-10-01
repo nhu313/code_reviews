@@ -52,15 +52,43 @@ describe ReviewRequestsController do
       assigns(:review_request).should == request
     end
 
-    it "renders show when form is valid" do
-      post :create, {:review_request => "nothing"}
-      assigns(:review_request).should render_template :show
-    end
+    context "form validation" do
+      it "renders show when form is valid" do
+        post :create, {:review_request => "nothing"}
+        assigns(:review_request).should render_template :show
+      end
 
-    it "returns user to the form when form is invalid" do
-      service.will_valid? false
-      post :create, {:review_request => "nothing"}
-      assigns(:review_request).should render_template :new
+      it "returns user to the form when form is invalid" do
+        service.will_valid? false
+        post :create, {:review_request => "nothing"}
+        assigns(:review_request).should render_template :new
+      end
+
+      context "user partially filled in the form" do
+        let(:title){"yellow"}
+        let(:url){"url for yellow"}
+        let(:description){"description"}
+        let(:attributes){{:title => title, :url => url, :description => description}}
+
+        before(:each) do
+          service.will_valid? false
+          service.will_extract_attributes attributes
+          post :create, {:review_request => attributes}
+        end
+
+        it "retains the title when form is invalid" do
+          assigns(:review_request).title.should == title
+        end
+
+        it "retains the url when form is invalid" do
+          assigns(:review_request).url.should == url
+        end
+
+        it "retains the description when form is invalid" do
+          assigns(:review_request).description.should == description
+        end
+
+      end
     end
   end
 

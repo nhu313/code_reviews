@@ -11,6 +11,7 @@ module Q
     define(:next_request_in_queue)
     define(:valid?) {|params| true}
     define(:save_skipped_request){|request|}
+    define(:extract_attributes){|r|}
   end
 
   describe ReviewRequestService do
