@@ -3,6 +3,10 @@ require 'q/review_request_service'
 class ReviewRequestsController < ApplicationController
   attr_writer :service
 
+  def index
+    @user_requests = service.user_requests
+  end
+
   def show
     @review_request = service.find(params["id"].to_i)
   end

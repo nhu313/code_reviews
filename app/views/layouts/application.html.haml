@@ -12,6 +12,7 @@
       #logo= link_to "Q", root_path
       %nav
         = link_to "Create Request", new_review_request_path
+        = link_to "My Requests", review_requests_path
     #main-content
       - unless title == "Reviews"
         %h1= title

@@ -1,0 +1,5 @@
+- content_for(:title) {"My Review Requests"}
+%ul
+- @user_requests.each do |review_request|
+  %li.pending
+    = link_to review_request.title, review_request
