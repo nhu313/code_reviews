@@ -10,7 +10,7 @@ module Q
     define(:find) {|request_id|}
     define(:next_request_in_queue)
     define(:valid?) {|params| true}
-    define(:skip_request){|request|}
+    define(:save_skipped_request){|request|}
   end
 
   describe ReviewRequestService do

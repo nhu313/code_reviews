@@ -8,7 +8,7 @@
     = csrf_meta_tags
   %body
     %header
-      %div.greeting Hi #{user.first_name}! #{link_to "Sign Out", signout_path, class: "signout"}
+      %div.greeting Hi #{user_first_name}! #{link_to "Sign Out", signout_path, class: "signout"}
       #logo= link_to "Q", root_path
       %nav
         = link_to "Create Request", new_review_request_path

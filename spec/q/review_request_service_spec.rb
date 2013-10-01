@@ -55,6 +55,16 @@ module Q
         request_in_queue = service.next_request_in_queue
         request_in_queue.id.should > skipped_request_id
       end
+
+      def mock_return_requests(skipped_request_id = 1)
+        user_request = MockReviewRequest.new(user_id)
+        taken_request = MockReviewRequest.new(user_id + 1)
+        taken_request.review_reply = "taken"
+        skipped_request = MockReviewRequest.new(user_id + 1, skipped_request_id)
+        not_taken_request = MockReviewRequest.new(user_id + 1, skipped_request_id + 1)
+
+        request_model.data = [user_request, taken_request, skipped_request, not_taken_request]
+      end
     end
 
     context "validate" do
@@ -92,38 +102,18 @@ module Q
       let(:request_id){33}
 
       it "saves the skip request" do
-        mock_return_requests
-        service.skip_request(request_id)
+        service.save_skipped_request(request_id)
         expected_attributes = {:user_id => user_id, :review_request_id => request_id}
         skip_history_model.attributes.should == expected_attributes
       end
 
       it "updates the skip request history when user has skipped a request before" do
-        mock_return_requests
         skip_history_model.data = [MockSkipRequestHistory.new(user_id)]
-        service.skip_request(request_id)
+        service.save_skipped_request(request_id)
         expected_attributes = {:review_request_id => request_id}
         skip_history_model.attributes.should == expected_attributes
       end
-
-      it "takes the next request in queue when user hits skip" do
-        expected_request = MockReviewRequest.new(user_id+1, request_id + 1)
-        request_model.data = [expected_request]
-        service.skip_request(request_id).should == expected_request
-      end
-
     end
-
-    def mock_return_requests(skipped_request_id = 1)
-      user_request = MockReviewRequest.new(user_id)
-      taken_request = MockReviewRequest.new(user_id + 1)
-      taken_request.review_reply = "taken"
-      skipped_request = MockReviewRequest.new(user_id + 1, skipped_request_id)
-      not_taken_request = MockReviewRequest.new(user_id + 1, skipped_request_id + 1)
-
-      request_model.data = [user_request, taken_request, skipped_request, not_taken_request]
-    end
-
   end
 end
 

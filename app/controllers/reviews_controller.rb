@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
   end
 
   def take_request
-    reply_service.create_review(params[:review_request_id])
+    reply_service.create_review(review_request_id)
     redirect_to root_path
   end
 
@@ -32,7 +32,8 @@ class ReviewsController < ApplicationController
   end
 
   def skip_request
-    # request_service.skip_request()
+    request_service.save_skipped_request(review_request_id)
+    redirect_to root_path
   end
 
   private
@@ -51,5 +52,9 @@ class ReviewsController < ApplicationController
 
   def review_reply_id
     params[:id].to_i
+  end
+
+  def review_request_id
+    params[:review_request_id].to_i
   end
 end

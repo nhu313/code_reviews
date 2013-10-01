@@ -62,7 +62,18 @@ describe ReviewsController do
         assigns(:review_reply).should == review
       end
     end
+  end
 
+  describe "create reply" do
+    it "renders show" do
+      patch :submit_reply, {:id => 1}
+      response.should redirect_to :review_reply
+    end
+
+    it "asks service to submit reply" do
+      patch :submit_reply, {:id => 1}
+      reply_service.was told_to :submit_reply
+    end
   end
 
   describe "take request" do
@@ -77,15 +88,15 @@ describe ReviewsController do
     end
   end
 
-  describe "create reply" do
-    it "renders show" do
-      patch :submit_reply, {:id => 1}
-      response.should redirect_to :review_reply
+  describe "skip request" do
+    it "redirect to root path" do
+      post :skip_request, {:review_request_id => 3}
+      response.should redirect_to root_path
     end
 
-    it "asks service to submit reply" do
-      patch :submit_reply, {:id => 1}
-      reply_service.was told_to :submit_reply
+    it "asks service to handle request" do
+      post :skip_request, {:review_request_id => 3}
+      request_service.was told_to :save_skipped_request
     end
   end
 end

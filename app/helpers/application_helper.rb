@@ -5,8 +5,8 @@ module ApplicationHelper
     "Code Review Queue"
   end
 
-  def user
-    controller.user
+  def user_first_name
+    controller.user_first_name
   end
 
 end

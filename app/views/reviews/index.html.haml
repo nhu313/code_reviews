@@ -1,14 +1,14 @@
 - content_for(:title) {"Reviews"}
 = content_for(:head) {stylesheet_link_tag "reviews", media: "all", "data-turbolinks-track" => true}
 
-- if @presenter.request_in_queue
+- if request_in_queue = @presenter.request_in_queue
   .queue
     .queue_link
       %ul
         %li.take_request
-          = link_to "Take Request", take_request_path(@presenter.request_in_queue), {method: :post}
+          = link_to "Take Request", take_request_path(request_in_queue), {method: :post}
         %li.skip_request
-          = link_to "Skip", @presenter.request_in_queue
+          = link_to "Skip", skip_request_path(request_in_queue), {method: :post}
     .queue_body
       .queue_title
         = link_to @presenter.request_in_queue.title, @presenter.request_in_queue

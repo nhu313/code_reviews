@@ -41,15 +41,7 @@ module Q
       return true
     end
 
-    def skip_request(request_id)
-      save_skip_request_history(request_id)
-      next_request_in_queue
-    end
-
-    private
-    attr_reader :user_id, :request_db_service, :skip_history_db_service
-
-    def save_skip_request_history(request_id)
+    def save_skipped_request(request_id)
       skip_history = skip_history_db_service.find_first({:user_id => user_id})
       if skip_history
         skip_history_db_service.update(skip_history.id, {:review_request_id => request_id})
@@ -57,6 +49,9 @@ module Q
         skip_history_db_service.create({:user_id => user_id, :review_request_id => request_id})
       end
     end
+
+    private
+    attr_reader :user_id, :request_db_service, :skip_history_db_service
 
     def last_skip_request_id
       skip_request = skip_history_db_service.find_first({:user_id => user_id})
