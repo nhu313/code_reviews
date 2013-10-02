@@ -4,27 +4,27 @@
 - if request_in_queue = @presenter.request_in_queue
   .queue
     .queue_link
-      %ul
-        %li.take_request
-          = link_to "Take Request", take_request_path(request_in_queue), {method: :post}
-        %li.skip_request
-          = link_to "Skip", skip_request_path(request_in_queue), {method: :post}
+      = button_to "Take Request", take_request_path(request_in_queue), {:class => "take_request"}
+      = button_to "Skip", skip_request_path(request_in_queue), {:class => "skip_request"}
     .queue_body
-      .queue_title
-        = link_to @presenter.request_in_queue.title, @presenter.request_in_queue
+      %h2
+        = link_to request_in_queue.title, request_in_queue
       %br
-      = link_to truncate(@presenter.request_in_queue.description, :length => 100), @presenter.request_in_queue
-.reviews
-  %ul
-    %li.reviews_box
-      %h2 My Requests
+      = link_to truncate(request_in_queue.description, :length => 100), request_in_queue
+%table.reviews
+  %tr
+    %th
+      Submitted Requests
+    %th
+      Reviewing
+  %tr
+    %td
       %ul
-        - @presenter.user_requests.each do |request|
-          %li.pending
-            = link_to request.title, request
-    %li.reviews_box
-      %h2 Reviewing Requests
+      - @presenter.user_requests.each do |request|
+        %li
+          = link_to request.title, request
+    %td
       %ul
-        - @presenter.user_replies.each do |reply|
-          %li.pending
-            = link_to reply.title, edit_review_reply_path(reply)
+      - @presenter.user_replies.each do |reply|
+        %li
+          = link_to reply.title, edit_review_reply_path(reply)

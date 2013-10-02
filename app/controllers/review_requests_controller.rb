@@ -4,7 +4,7 @@ class ReviewRequestsController < ApplicationController
   attr_writer :service
 
   def index
-    @user_requests = service.user_requests
+    @presenter = ReviewRequestsPresenter.new(service.user_requests)
   end
 
   def show

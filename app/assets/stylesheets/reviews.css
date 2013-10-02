@@ -4,15 +4,15 @@
   text-align: center;
   padding: 1em;
   width: 100%;
+  height: 5em;
 }
 
 .queue a{
   color: #333;
 }
 
-.queue_title {
+.queue h2 {
   font-size: 2em;
-  display: inline-block;
 }
 
 .queue_title a{
@@ -30,14 +30,21 @@
 
 .skip_request {
   background: #FF0E4A;
-  padding: 0.3em;
-  margin-bottom: .3em;
 }
 
 .take_request {
   background: #71B101;
-  padding: 0.3em;
+}
+
+.button, .skip_request, .take_request{
+  padding: 0.5em 0.3em;
   margin-bottom: .3em;
+  display: inline-block;
+  color: #EFEFEF;
+  text-transform: uppercase;
+  border: 0px;
+  width: 10em;
+  font-size: 1em;
 }
 
 .queue_link a {
@@ -46,22 +53,25 @@
 }
 
 .reviews_box {
-  width: 49.5em;
   float: left;
   margin-right: 1em;
   margin-left: 1em;
+  background: #FFF;
+  border: 0.1em solid #333;
 }
 
-.reviews {
+.reviews{
   text-align: center;
   margin-top: 1.5em;
   width: 100%;
+  border-spacing: 10px;
 }
 
-.reviews h2 {
+.reviews th {
   text-transform: none;
   font-size: 2em;
   border-bottom: solid .08em #FF0E4A;
+  font-family: Times;
 }
 
 .pink {

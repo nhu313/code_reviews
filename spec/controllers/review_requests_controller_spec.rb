@@ -13,19 +13,20 @@ describe ReviewRequestsController do
     @controller.service = service
   end
 
-  describe "Getting all requests" do
+  describe "GET index" do
+    before(:each) do
+      service.will_have_user_requests [MockReviewRequest.new(1)]
+    end
+
     it "has a route to get all requests" do
       get :index
       response.should be_success
     end
 
-    it "assigns the review_requests" do
-      requests = ["1", "2"]
-      service.will_user_requests requests
+    it "assigns presenter" do
       get :index
-      assigns(:user_requests).should == requests
+      assigns(:presenter).should_not be_nil
     end
-
   end
 
   describe "GET show" do

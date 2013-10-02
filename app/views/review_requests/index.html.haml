@@ -1,5 +1,27 @@
-- content_for(:title) {"My Review Requests"}
-%ul
-- @user_requests.each do |review_request|
-  %li.pending
-    = link_to review_request.title, review_request
+- content_for(:title) {"My Requests"}
+- content_for(:head) {stylesheet_link_tag "reviews", media: "all", "data-turbolinks-track" => true}
+
+%table.reviews
+  %tr
+    %th
+      Open
+    %th
+      In Progress
+    %th
+      Completed
+  %tr
+    %td
+      %ul
+      - @presenter.open_requests.each do |review_request|
+        %li
+          = link_to review_request.title, review_request
+    %td
+      %ul
+      - @presenter.taken_requests.each do |review_request|
+        %li
+          = link_to review_request.title, review_request
+    %td
+      %ul
+      - @presenter.completed_requests.each do |review_request|
+        %li
+          = link_to review_request.title, review_request
