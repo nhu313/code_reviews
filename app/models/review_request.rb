@@ -6,4 +6,8 @@ class ReviewRequest < ActiveRecord::Base
   def completed?
     review_reply && review_reply.posted_date
   end
+
+  def taken?
+    review_reply
+  end
 end

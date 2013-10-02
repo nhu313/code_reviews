@@ -7,11 +7,11 @@ describe "Sign in" do
     Hash["uid" => "id111", "info" => user_info]
   }
 
-  xit "creates a new user when user first login" do
-    user_count = User.all.count
-    user_id = service.user_id_for(auth)
-    User.all.count.should == user_count + 1
-  end
+  # xit "creates a new user when user first login" do
+  #   user_count = User.all.count
+  #   user_id = service.user_id_for(auth)
+  #   User.all.count.should == user_count + 1
+  # end
 
   it "returns a user id when user already exist" do
     new_user_id = service.user_id_for(auth)

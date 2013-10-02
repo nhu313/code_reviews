@@ -23,4 +23,15 @@ describe ReviewRequest do
     end
   end
 
+  describe "When a request is taken" do
+    it "is taken when there is a reply" do
+      review_request.stub(:review_reply).and_return(review_reply)
+      review_request.should be_taken
+    end
+
+    it "is not taken when there is no reply" do
+      review_request.should_not be_taken
+    end
+  end
+
 end
