@@ -4,8 +4,9 @@
 - if request_in_queue = @presenter.request_in_queue
   .queue
     .queue_link
-      = button_to "Take Request", take_request_path(request_in_queue), {:class => "take_request"}
-      = button_to "Skip", skip_request_path(request_in_queue), {:class => "skip_request"}
+      = link_to "Take Request", take_request_path(request_in_queue), {:class => "take_request"}
+      %br
+      = link_to "Skip", skip_request_path(request_in_queue), {:class => "skip_request"}
     .queue_body
       %h2
         = link_to request_in_queue.title, request_in_queue

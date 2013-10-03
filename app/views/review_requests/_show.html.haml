@@ -1,16 +1,15 @@
 = content_for(:title) {@review_request.title}
 
-%p
-  %b Title:
-  = @review_request.title
-%p
-  %b Url:
-  = link_to @review_request.url, @review_request.url
-
-%p
-  %b Date posted:
-  = @review_request.posted_date.to_formatted_s(:long)
-
-%p
-  %b Description:
-  = @review_request.description
+%table.data_list
+  %tr
+    %td Title:
+    %td= @review_request.title
+  %tr
+    %td Url:
+    %td= link_to @review_request.url, @review_request.url
+  %tr
+    %td Date posted:
+    %td= @review_request.posted_date.to_formatted_s(:long)
+  %tr
+    %td Description:
+    %td= @review_request.description

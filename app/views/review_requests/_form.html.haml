@@ -1,16 +1,16 @@
 = content_for(:title) {"Create Request"}
 = flash[:notice]
 = form_for @review_request, url: {action: "create"} do |f|
-  %table
-    %tr.field
+  %table.form
+    %tr
       %td= f.label :title, "Title*"
       %td= f.text_field :title
-    %tr.field
+    %tr
       %td= f.label :url, "URL*"
       %td= f.text_field :url
-    %tr.field
+    %tr
       %td= f.label :description
-      %td= f.text_area :description, :rows => 4
-    %tr.field
+      %td= f.text_area :description
+    %tr
       %td
-      %td= f.submit "Submit"
+      %td= f.submit "Submit", :class => "button"

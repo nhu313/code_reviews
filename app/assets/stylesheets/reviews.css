@@ -1,5 +1,5 @@
 .queue {
-  background: #999 url("bannerbg.png");
+  background: #999;
   margin: -1em;
   text-align: center;
   padding: 1em;
@@ -36,17 +36,9 @@
   background: #71B101;
 }
 
-.button, .skip_request, .take_request{
-  padding: 0.5em 0.3em;
-  margin-bottom: .3em;
-  display: inline-block;
-  color: #EFEFEF;
-  text-transform: uppercase;
-  border: 0px;
-  width: 10em;
-  font-size: 1em;
+.skip_request, .take_request {
+  padding: .5em .3em;
 }
-
 .queue_link a {
   color: #EFEFEF;
   text-transform: uppercase;

@@ -31,6 +31,8 @@ ol, ul, li {
 
 a {
   text-decoration: none;
+  display: inline-block;
+
 }
 
 blockquote, q {
@@ -48,14 +50,14 @@ table {
 
 body {
   background-color: #DDD;
-  font: 100% Verdana, Arial;
+  font: 110% Verdana, Arial;
   color: #333;
   text-align: left;
 }
 
 header {
   height: 7.4em;
-  background: #444444;
+  background: #444444 url("bannerbg.png");
   border-bottom: 0.3em solid #A3D41F;
   color: #FFFFFF;
   padding: 1em;
@@ -97,7 +99,7 @@ nav a:hover, nav a:active{
 }
 
 hr {
-  color: #FF0E4A;
+  color: #FFF;
   height: .01em;
 }
 
@@ -107,19 +109,19 @@ h1, h2{
 }
 
 h1 {
-  font-size: 2.3em;
+  font-size: 2em;
   color: #333;
   width: 100%;
   border-bottom: .071em solid #FF0E4A;
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 1.8em;
   color: #444;
 }
 
 h3 {
-  font-size: 1.6em;
+  font-size: 1.4em;
   color: #555;
 }
 
@@ -151,7 +153,6 @@ a {
 	clear: both;
 	padding: 0px;
 	margin: 0px;
-  text-align: center;
 }
 
 /*  COLUMN SETUP  */
@@ -221,12 +222,56 @@ a {
 	}
 }
 
-.section li {
-  border-bottom: 0.1em solid #DDD;
-  font-size: 110%;
+.section li, .data_list td{
+  border-bottom: 0.1em solid #EEE;
+  margin: 0.3em;
 }
 
 .section h2 {
   text-transform: capitalize;
-  border-bottom: 0.05em solid #FF0E4A;
+  color: #FF0E4A;
+  padding-bottom: 0.4em;
+}
+
+.section li a{
+  width: 100%;
+  display: inline-block;
+}
+
+.button, .skip_request, .take_request{
+  padding: 0.2em 0.3em;
+  margin-bottom: .3em;
+  display: inline-block;
+  color: #FFF;
+  text-transform: uppercase;
+  border: 0px;
+  width: 10em;
+  font-size: 1em;
+  background: #FF0E4A;
+}
+
+.field {
+  padding: 1em;
+}
+
+input, textarea {
+  width: 60em;
+  font-size: 110%;
+}
+
+textarea {
+  height: 20em;
+}
+
+.form td{
+  padding: .5em;
+}
+.form td:first-child, .data_list td:first-child{
+  text-align: right;
+  font-weight: bold;
+  vertical-align: top;
+}
+
+.data_list td{
+  padding: .3em;
 }
