@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130930195541) do
+ActiveRecord::Schema.define(version: 20131003161736) do
 
   create_table "review_replies", force: true do |t|
     t.string   "url"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20130930195541) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "archive",     default: false
   end
 
   create_table "skip_request_histories", force: true do |t|

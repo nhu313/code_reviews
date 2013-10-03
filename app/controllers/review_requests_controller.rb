@@ -8,7 +8,7 @@ class ReviewRequestsController < ApplicationController
   end
 
   def show
-    @review_request = service.find(params["id"].to_i)
+    @review_request = service.find(request_id)
     @review_reply = @review_request.review_reply if @review_request.completed?
     render 'reviews/show'
   end
@@ -29,8 +29,17 @@ class ReviewRequestsController < ApplicationController
     end
   end
 
+  def archive
+    service.archive(request_id)
+    redirect_to review_request_path(request.parameters)
+  end
+
   private
     def service
       @service ||= Q::ReviewRequestService.new(user_id, ReviewRequest, SkipRequestHistory)
+    end
+
+    def request_id
+      params["id"].to_i
     end
 end

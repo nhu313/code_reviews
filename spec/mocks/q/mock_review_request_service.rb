@@ -12,6 +12,8 @@ module Q
     define(:valid?) {|params| true}
     define(:save_skipped_request){|request|}
     define(:extract_attributes){|r|}
+    define(:archive){|r|}
+    define(:homepage_user_requests)
   end
 
   describe ReviewRequestService do

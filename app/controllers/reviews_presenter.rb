@@ -4,7 +4,7 @@ class ReviewsPresenter
   def initialize(request_service, reply_service)
     @user_replies = reply_service.user_replies
 
-    @user_requests = request_service.user_requests
+    @user_requests = request_service.homepage_user_requests
     @request_in_queue = request_service.next_request_in_queue
   end
 

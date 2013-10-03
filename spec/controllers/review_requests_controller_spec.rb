@@ -130,6 +130,17 @@ describe ReviewRequestsController do
 
       end
     end
-  end
 
+    context "Archive review request" do
+      it "redirect user to review show" do
+        post :archive, {:id => 1}
+        response.should redirect_to review_request_path(request.parameters)
+      end
+
+      it "asks service to archive request" do
+        post :archive, {:id => 1}
+        service.was told_to :archive
+      end
+    end
+  end
 end

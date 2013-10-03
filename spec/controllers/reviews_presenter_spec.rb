@@ -10,7 +10,7 @@ describe ReviewsPresenter do
 
   it "gets the review requests for the user" do
     requests = "requests"
-    request_service.will_have_user_requests requests
+    request_service.will_have_homepage_user_requests requests
     presenter.user_requests.should == requests
   end
 

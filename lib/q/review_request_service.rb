@@ -27,6 +27,10 @@ module Q
       request_db_service.find_all({:user_id => user_id})
     end
 
+    def homepage_user_requests
+      request_db_service.find_all({:user_id => user_id, :archive => false})
+    end
+
     def find(request_id)
       request_db_service.find_by_id(request_id)
     end
@@ -52,6 +56,10 @@ module Q
       else
         skip_history_db_service.create({:user_id => user_id, :review_request_id => request_id})
       end
+    end
+
+    def archive(request_id)
+      request_db_service.update(request_id, {:archive => true})
     end
 
     private

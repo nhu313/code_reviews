@@ -12,6 +12,7 @@ CodeReview::Application.routes.draw do
   get "review_requests/new" => "review_requests#new", :as => :new_review_request
   get "review_requests/:id" => "review_requests#show", :as => :review_request
   post "review_requests" => "review_requests#create"
+  post "review_requests/:id/archive" => "review_requests#archive", :as => :archive_review_request
 
   #REVIEWS
   get "reviews" => "reviews#index", :as => :reviews

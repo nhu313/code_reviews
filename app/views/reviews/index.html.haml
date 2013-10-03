@@ -11,20 +11,18 @@
         = link_to request_in_queue.title, request_in_queue
       %br
       = link_to truncate(request_in_queue.description, :length => 100), request_in_queue
-%table.reviews
-  %tr
-    %th
-      Submitted Requests
-    %th
-      Reviewing
-  %tr
-    %td
-      %ul
-      - @presenter.user_requests.each do |request|
-        %li
-          = link_to request.title, request
-    %td
-      %ul
-      - @presenter.user_replies.each do |reply|
-        %li
-          = link_to reply.title, edit_review_reply_path(reply)
+
+
+%div.section.group
+  %div.col.span_1_of_2
+    %h2 Submitted Requests
+    %ul
+    - @presenter.user_requests.each do |request|
+      %li
+        = link_to request.title, request
+  %div.col.span_1_of_2
+    %h2 Reviewing
+    %ul
+    - @presenter.user_replies.each do |reply|
+      %li
+        = link_to reply.title, edit_review_reply_path(reply)

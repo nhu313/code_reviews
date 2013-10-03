@@ -42,6 +42,13 @@ module Q
         request_model.filter.should == {:user_id => user_id}
       end
 
+      it "finds all the requests for the homepage" do
+        data = ["1", "2"]
+        request_model.data = data
+        service.homepage_user_requests.should == data
+        request_model.filter.should == {:user_id => user_id, :archive => false}
+      end
+
       it "gets the next request in queue" do
         mock_return_requests
         request_in_queue = service.next_request_in_queue
@@ -115,6 +122,16 @@ module Q
         skip_history_model.attributes.should == expected_attributes
       end
     end
+
+    context "archieve request" do
+      it "save user preference" do
+        service.archive(11)
+        expected_attributes = {:archive => true}
+        request_model.attributes.should == expected_attributes
+      end
+
+    end
+
   end
 end
 

@@ -14,3 +14,8 @@
   %p
     %strong Reviewer:
     = @review_reply.reviewer.first_name + ' ' + @review_reply.reviewer.last_name
+
+  -unless @review_request.archive
+    %p
+      = button_to "Archive", archive_review_request_path(@review_request)
+
