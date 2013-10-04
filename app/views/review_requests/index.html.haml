@@ -7,16 +7,16 @@
     %ul
     - @presenter.open_requests.each do |review_request|
       %li
-        = link_to review_request.title, review_request
+        = link_to request_link_name(review_request), review_request
   %div.col.span_1_of_3
     %h2 In Progress
     %ul
     - @presenter.taken_requests.each do |review_request|
       %li
-        = link_to review_request.title, review_request
+        = link_to request_link_name(review_request), review_request
   %div.col.span_1_of_3
     %h2 Completed
     %ul
     - @presenter.completed_requests.each do |review_request|
       %li
-        = link_to review_request.title, review_request
+        = link_to request_link_name(review_request), review_request

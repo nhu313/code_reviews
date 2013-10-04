@@ -16,11 +16,11 @@ module Q
         model.id.should == review_id
       end
 
-      it "finds all the reviews for" do
+      it "finds all the reviews" do
         data = ["1", "2"]
         model.data = data
         service.user_replies.should == data
-        model.filter.should == {:reviewer_id => user_id}
+        model.filter.should == {:reviewer_id => user_id, :posted_date => nil}
       end
     end
 
@@ -51,4 +51,3 @@ module Q
     end
   end
 end
-  

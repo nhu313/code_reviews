@@ -34,4 +34,21 @@ describe ReviewRequest do
     end
   end
 
+  it "returns requests in default order" do
+    user_id = 331
+    request1 = ReviewRequest.new({:user_id => user_id, :posted_date => DateTime.now})
+    request2 = ReviewRequest.new({:user_id => user_id, :posted_date => DateTime.now})
+    request2.save
+    request1.save
+
+    puts request1.id
+
+    puts request2.id
+
+
+    requests = ReviewRequest.where({:user_id => user_id})
+
+    requests.last.should == request2
+  end
+
 end
