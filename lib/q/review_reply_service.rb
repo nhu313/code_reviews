@@ -13,7 +13,7 @@ module Q
     end
 
     def user_replies
-      db_service.find_all({:reviewer_id => user_id})
+      db_service.find_all({:reviewer_id => user_id, :posted_date => nil})
     end
 
     def create_review(review_request_id)
