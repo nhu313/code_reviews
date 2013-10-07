@@ -16,4 +16,4 @@
 /tmp
 /config/omniauth.yml
 /public/assets
-coverage/
+/coverage
