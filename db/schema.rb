@@ -16,7 +16,8 @@ ActiveRecord::Schema.define(version: 20131003161736) do
   create_table "review_replies", force: true do |t|
     t.string   "url"
     t.text     "comment"
-    t.date     "posted_date"
+    t.datetime "posted_date"
+    t.datetime "taken_date"
     t.integer  "reviewer_id"
     t.integer  "review_request_id"
     t.datetime "created_at"
@@ -26,7 +27,7 @@ ActiveRecord::Schema.define(version: 20131003161736) do
   create_table "review_requests", force: true do |t|
     t.string   "title"
     t.string   "url"
-    t.date     "posted_date"
+    t.datetime "posted_date"
     t.text     "description"
     t.integer  "user_id"
     t.datetime "created_at"
@@ -34,7 +35,7 @@ ActiveRecord::Schema.define(version: 20131003161736) do
     t.boolean  "archive",     default: false
   end
 
-  create_table "skip_request_histories", force: true do |t|
+  create_table "skipped_review_requests", force: true do |t|
     t.integer  "user_id"
     t.integer  "review_request_id"
     t.datetime "created_at"
@@ -44,10 +45,10 @@ ActiveRecord::Schema.define(version: 20131003161736) do
   create_table "users", force: true do |t|
     t.string   "uid"
     t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

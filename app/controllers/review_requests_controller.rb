@@ -36,7 +36,7 @@ class ReviewRequestsController < ApplicationController
 
   private
     def service
-      @service ||= Q::ReviewRequestService.new(user_id, ReviewRequest, SkipRequestHistory)
+      @service ||= Q::ReviewRequestService.new(user_id, ReviewRequest, SkippedReviewRequest)
     end
 
     def request_id

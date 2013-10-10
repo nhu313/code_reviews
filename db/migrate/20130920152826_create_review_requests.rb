@@ -3,7 +3,7 @@ class CreateReviewRequests < ActiveRecord::Migration
     create_table :review_requests do |t|
       t.string :title
       t.string :url
-      t.date :posted_date
+      t.datetime :posted_date
       t.text :description
       t.integer :user_id
 
