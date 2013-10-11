@@ -1,14 +1,14 @@
 require 'spec_helper'
-require 'q/review_request_service'
+require 'q/review_requests'
 require 'mocks/q/mock_model'
 require 'mocks/q/mock_review_request'
 
 module Q
-  describe ReviewRequestService do
+  describe ReviewRequests do
     let(:user_id) {5444}
     let(:request_model) {MockModel.new}
     let(:skip_history_model) {MockModel.new}
-    let(:service) {ReviewRequestService.new(user_id, request_model, skip_history_model)}
+    let(:service) {ReviewRequests.new(user_id, request_model, skip_history_model)}
     let(:params) {Hash[:title => "Blog title", :url => "some url", :description => "text**", :extra_param => "something"]}
 
     context "create request" do
