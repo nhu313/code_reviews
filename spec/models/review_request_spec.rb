@@ -41,11 +41,6 @@ describe ReviewRequest do
     request2.save
     request1.save
 
-    puts request1.id
-
-    puts request2.id
-
-
     requests = ReviewRequest.where({:user_id => user_id})
 
     requests.last.should == request2
