@@ -43,3 +43,5 @@ begin
 rescue LoadError
   puts 'Coverage disabled, enable by installing simplecov'
 end
+
+require 'mocks/q/mock_models'

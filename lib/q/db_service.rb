@@ -1,6 +1,10 @@
 module Q
   class DBService
 
+    def self.create(model_name)
+      DBService.new(Models[model_name])
+    end
+
     def initialize(model)
       @model = model
     end
