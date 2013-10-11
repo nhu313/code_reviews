@@ -1,9 +1,10 @@
 require 'q/review_request_service'
+require 'spec_helper'
 
 describe "creating a new request" do
   let(:user_id) {1}
   let(:another_user){2}
-  let(:service) {Q::ReviewRequestService.new(user_id, ReviewRequest, SkipRequestHistory)}
+  let(:service) {Q::ReviewRequestService.new(user_id, ReviewRequest, SkippedReviewRequest)}
   let(:params) {Hash[:title => "Blog title", :url => "some url",
                      :description => "text**", :extra_param => "something"]}
 
@@ -43,6 +44,8 @@ describe "creating a new request" do
     end
 
     it "gets the next request in queue" do
+      cleanUserSkipRequests
+
       create_requests(another_user, 1)
       request_in_queue = service.next_request_in_queue
       request_in_queue.user_id.should_not == user_id
@@ -77,7 +80,7 @@ describe "creating a new request" do
 
     it "saves the skip request" do
       service.save_skipped_request(request_id)
-      SkipRequestHistory.find_by({:user_id => user_id}).review_request_id.should == request_id
+      SkippedReviewRequest.find_by({:user_id => user_id}).review_request_id.should == request_id
     end
 
     it "updates the skip request history when user has skipped a request before" do
@@ -85,16 +88,16 @@ describe "creating a new request" do
       create_skip_history(request_id - 10)
 
       service.save_skipped_request(request_id)
-      SkipRequestHistory.find_by({:user_id => user_id}).review_request_id.should == request_id
+      SkippedReviewRequest.find_by({:user_id => user_id}).review_request_id.should == request_id
     end
   end
 
   def cleanUserSkipRequests
-    skippedRequests =  SkipRequestHistory.where({:user_id => user_id})
+    skippedRequests = SkippedReviewRequest.where({:user_id => user_id})
     skippedRequests.each {|r| r.destroy}
   end
 
   def create_skip_history(review_request_id)
-    SkipRequestHistory.create({:user_id => user_id, :review_request_id => review_request_id})
+    SkippedReviewRequest.create({:user_id => user_id, :review_request_id => review_request_id})
   end
 end

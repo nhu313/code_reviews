@@ -1,4 +1,5 @@
 require 'q/user_service'
+require 'spec_helper'
 
 describe "Sign in" do
   let(:service){Q::UserService.new(User)}
