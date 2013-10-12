@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20131003161736) do
 
   create_table "skipped_review_requests", force: true do |t|
     t.integer  "user_id"
-    t.integer  "review_request_id"
+    t.datetime "last_skipped_date"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
