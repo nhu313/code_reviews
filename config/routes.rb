@@ -1,5 +1,5 @@
 CodeReview::Application.routes.draw do
-  root :to => "reviews#index"
+  root :to => "homepage#index"
 
   # USER
   get "users/signout" => "users#destroy", :as => :signout

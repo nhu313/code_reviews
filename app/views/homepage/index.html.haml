@@ -1,0 +1,16 @@
+- content_for(:title) {"Reviews"}
+= content_for(:head) {stylesheet_link_tag "reviews", media: "all", "data-turbolinks-track" => true}
+
+%div.section.group
+  %div.col.span_1_of_2
+    %h2 Submitted Requests
+    %ul
+    - @reviews_submitted.each do |review|
+      %li
+        = link_to review.title, review
+  %div.col.span_1_of_2
+    %h2 Reviewing Requests
+    %ul
+    - @reviews_taken.each do |review|
+      %li
+        = link_to review.title, edit_review_reply_path(review)

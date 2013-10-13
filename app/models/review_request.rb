@@ -6,10 +6,10 @@ class ReviewRequest < ActiveRecord::Base
   default_scope {order('posted_date ASC')}
 
   def completed?
-    review_reply && review_reply.posted_date
+    review_reply
   end
 
   def taken?
-    review_reply
+    reviewer_id
   end
 end

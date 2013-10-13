@@ -1,10 +1,11 @@
 require 'q/review_request_service'
+require 'q/review_requests'
 
 class ReviewRequestsController < ApplicationController
   attr_writer :service
 
   def index
-    @presenter = ReviewRequestsPresenter.new(service.user_requests)
+    @review_requests = Q::ReviewRequests.for(user_id)
   end
 
   def show

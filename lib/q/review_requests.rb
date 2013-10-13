@@ -3,50 +3,33 @@ require 'q/db_service'
 module Q
   class ReviewRequests
 
-    def initialize(user_id)
-      @request_db_service = DBService.create(:review_request)
-      @user_id = user_id
+    def self.for(user_id)
+      ReviewRequests.new(user_id)
     end
 
-    def extract_attributes(params)
-      Hash[ :title => params[:title],
-            :url => params[:url],
-            :description => params[:description]]
+    def completed
+      review_requests.select {|r| r.completed? }
     end
 
-    def create(params)
-      request_attributes = extract_attributes(params)
-      request_attributes[:user_id] = user_id
-      request_attributes[:posted_date] = DateTime.now
-
-      request_db_service.create(request_attributes)
+    def taken
+      review_requests.select {|r| r.taken? unless r.completed?}
     end
 
-    def all
-      request_db_service.find_all({:user_id => user_id})
-    end
-
-    def active
-      request_db_service.find_all({:user_id => user_id, :archive => false})
-    end
-
-    def find(request_id)
-      request_db_service.find_by_id(request_id)
-    end
-
-    def valid?(attributes)
-      return false if attributes.blank?
-      return false if attributes[:title].blank?
-      return false if attributes[:url].blank?
-      return true
-    end
-
-    def archive(request_id)
-      request_db_service.update(request_id, {:archive => true})
+    def open
+      review_requests.select {|r| !r.taken? }
     end
 
     private
-    attr_reader :user_id, :request_db_service
+    attr_reader :user_id, :review_requests
 
+    def initialize(user_id)
+      @user_id = user_id
+      @review_requests = retrieve_requests
+    end
+
+    def retrieve_requests
+      db = DBService.create(:review_request)
+      db.find_all({:user_id => user_id})
+    end
   end
 end

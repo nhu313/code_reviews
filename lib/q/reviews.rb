@@ -7,22 +7,20 @@ module Q
       Reviews.new(user_id)
     end
 
-    def initialize(user_id)
-      @user_id = user_id
-      @request_db = DBService.create(:review_request)
-      @reply_db = DBService.create(:review_reply)
-    end
-
-    def requested
-      request_db.find_all({:user_id => user_id, :archive => false})
+    def submitted
+      db.find_all({:user_id => user_id, :archive => false})
     end
 
     def taken
-      reply_db.find_all({:reviewer_id => user_id, :posted_date => nil})
+      db.find_all({:reviewer_id => user_id})
     end
 
     private
-    attr_reader :user_id, :request_db, :reply_db
+    attr_reader :user_id, :db
 
+    def initialize(user_id)
+      @user_id = user_id
+      @db = DBService.create(:review_request)
+    end
   end
 end
