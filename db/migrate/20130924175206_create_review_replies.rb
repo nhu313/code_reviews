@@ -4,8 +4,6 @@ class CreateReviewReplies < ActiveRecord::Migration
       t.string :url
       t.text :comment
       t.datetime :posted_date
-      t.datetime :taken_date
-      t.integer :reviewer_id
       t.integer :review_request_id
 
       t.timestamps

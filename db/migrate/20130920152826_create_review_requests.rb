@@ -6,6 +6,7 @@ class CreateReviewRequests < ActiveRecord::Migration
       t.datetime :posted_date
       t.text :description
       t.integer :user_id
+      t.integer :review_id
 
       t.timestamps
     end

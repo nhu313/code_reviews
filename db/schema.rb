@@ -17,8 +17,6 @@ ActiveRecord::Schema.define(version: 20131003161736) do
     t.string   "url"
     t.text     "comment"
     t.datetime "posted_date"
-    t.datetime "taken_date"
-    t.integer  "reviewer_id"
     t.integer  "review_request_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -30,6 +28,7 @@ ActiveRecord::Schema.define(version: 20131003161736) do
     t.datetime "posted_date"
     t.text     "description"
     t.integer  "user_id"
+    t.integer  "reviewer_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "archive",     default: false
