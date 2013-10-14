@@ -1,12 +1,12 @@
 class ReviewsPresenter
-  attr_reader :user_requests, :request_in_queue, :user_replies
+  attr_reader :queue, :reviews_submitted, :reviews_taken
 
-  def initialize(request_service, reply_service)
-    @user_replies = reply_service.user_replies
+  def initialize(user_id)
+    @queue = Q::ReviewRequestQueue.for(user_id).peek
+    puts @queue.inspect
 
-    @user_requests = request_service.homepage_user_requests
-    @request_in_queue = request_service.next_request_in_queue
+    reviews = Q::Reviews.for(user_id)
+    @reviews_submitted = reviews.submitted
+    @reviews_taken = reviews.taken
   end
-
-
 end

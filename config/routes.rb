@@ -1,5 +1,5 @@
 CodeReview::Application.routes.draw do
-  root :to => "homepage#index"
+  root :to => "reviews#index"
 
   # USER
   get "users/signout" => "users#destroy", :as => :signout
@@ -15,12 +15,10 @@ CodeReview::Application.routes.draw do
   post "review_requests/:id/archive" => "review_requests#archive", :as => :archive_review_request
 
   #REVIEWS
-  get "reviews/:review_request_id/take_request" => "homepage#take_request", :as => :take_request
-  get "reviews/:review_request_id/skip_request" => "homepage#skip_request", :as => :skip_request
-  get "reviews/:review_request_id" => "homepage#show", :as => :review
+  get "reviews/:review_request_id/take_request" => "reviews#take_request", :as => :take_request
+  get "reviews/:review_request_id/skip_request" => "reviews#skip_request", :as => :skip_request
+  get "reviews/:review_request_id" => "reviews#show", :as => :review
 
   get "review_replies/:review_request_id/new" => "review_replies#new", :as => :new_review_reply
   post "review_replies/:review_request_id" => "review_replies#create"
-
-
 end

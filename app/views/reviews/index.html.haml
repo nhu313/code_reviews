@@ -1,29 +1,28 @@
 - content_for(:title) {"Reviews"}
 = content_for(:head) {stylesheet_link_tag "reviews", media: "all", "data-turbolinks-track" => true}
 
-- if request_in_queue = @presenter.request_in_queue
+- if queue = @presenter.queue
   .queue
     .queue_link
-      = link_to "Take Request", take_request_path(request_in_queue), {:class => "take_request"}
+      = link_to "Take Request", take_request_path(queue), {:class => "take_request"}
       %br
-      = link_to "Skip", skip_request_path(request_in_queue), {:class => "skip_request"}
+      = link_to "Skip", skip_request_path(queue), {:class => "skip_request"}
     .queue_body
       %h2
-        = link_to request_in_queue.title, request_in_queue
+        = link_to queue.title, review_path(queue)
       %br
-      = link_to truncate(request_in_queue.description, :length => 100), request_in_queue
-
+      = link_to truncate(queue.description, :length => 100), queue
 
 %div.section.group
   %div.col.span_1_of_2
     %h2 Submitted Requests
     %ul
-    - @presenter.user_requests.each do |request|
+    - @presenter.reviews_submitted.each do |review|
       %li
-        = link_to request.title, request
+        = link_to review.title, review
   %div.col.span_1_of_2
-    %h2 Reviewing
+    %h2 Reviewing Requests
     %ul
-    - @presenter.user_replies.each do |reply|
+    - @presenter.reviews_taken.each do |review|
       %li
-        = link_to reply.title, edit_review_reply_path(reply)
+        = link_to review.title, new_review_reply_path(review)
