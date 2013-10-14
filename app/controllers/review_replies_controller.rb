@@ -6,7 +6,7 @@ class ReviewRepliesController < ApplicationController
 
   def new
     @review_request = request_service.find(review_request_id)
-    @review_reply = @review_request.review_reply || ReviewReply.new
+    @review_reply = ReviewReply.new
   end
 
   def create
@@ -24,6 +24,6 @@ class ReviewRepliesController < ApplicationController
   end
 
   def review_request_id
-    params[:review_request_id].to_i
+    params[:review_request_id]
   end
 end

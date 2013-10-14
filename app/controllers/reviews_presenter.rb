@@ -3,7 +3,6 @@ class ReviewsPresenter
 
   def initialize(user_id)
     @queue = Q::ReviewRequestQueue.for(user_id).peek
-    puts @queue.inspect
 
     reviews = Q::Reviews.for(user_id)
     @reviews_submitted = reviews.submitted
