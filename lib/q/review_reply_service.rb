@@ -20,25 +20,7 @@ module Q
                          })
     end
 
-    def user_replies
-      db_service.find_all({:reviewer_id => user_id, :posted_date => nil})
-    end
-
-    def create_review(review_request_id)
-      db_service.create({:reviewer_id => user_id,
-                         :review_request_id => review_request_id})
-    end
-
-    def submit_reply(id, attributes)
-      db_service.update(id, {
-        :url => attributes[:url],
-        :comment => attributes[:comment],
-        :posted_date => DateTime.now
-      })
-    end
-
     private
     attr_reader :db_service, :user_id
-
   end
 end

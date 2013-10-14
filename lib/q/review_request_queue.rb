@@ -20,6 +20,7 @@ module Q
     def skip_request(review_request_id)
       review_request_date = request_db.find_by_id(review_request_id).posted_date
       skipped_request = skipped_request_db.find_first({:user_id => user_id})
+
       if skipped_request
         skipped_request_db.update(skipped_request.id, {:last_skipped_date => review_request_date})
       else
