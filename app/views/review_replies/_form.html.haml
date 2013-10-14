@@ -1,0 +1,12 @@
+= form_for @review_reply, url: {action: "create"} do |f|
+  %table.form
+    %tr
+      %td= f.label :url
+      %td= f.text_field :url
+    %tr
+      %td= f.label :comment
+      %td= f.text_area :comment
+    %tr
+      %td
+      %td= f.submit "Submit", :class => "button"
+

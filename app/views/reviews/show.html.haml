@@ -1,22 +1,7 @@
 =render "review_requests/show"
 - if @review_reply
-  %p#notice= notice
   %hr
-  %table.data_list
-    %tr
-      %td Url:
-      %td= @review_reply.url
-    %tr
-      %td Comment:
-      %td= @review_reply.comment
-    %tr
-      %td Posted date:
-      %td= @review_reply.posted_date.to_formatted_s(:long)
-    %tr
-      %td Reviewer:
-      %td= @review_reply.reviewer.first_name + ' ' + @review_reply.reviewer.last_name
-
-  -unless @review_request.archive
+  =render "review_replies/show"
+  -unless @review.archive
     %br
-    %p= button_to "Archive", archive_review_request_path(@review_request), :class => "button"
-
+    %p= button_to "Archive", archive_review_request_path(@review.request), :class => "button"

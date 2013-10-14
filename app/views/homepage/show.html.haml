@@ -1,0 +1,7 @@
+=render "review_requests/show"
+- if @review_reply
+  %hr
+  =render "review_replies/show"
+  -unless @review_request.archive
+    %br
+    %p= button_to "Archive", archive_review_request_path(@review_request), :class => "button"

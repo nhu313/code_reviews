@@ -1,28 +1,20 @@
-== README
+== Q
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
+This is application is a code review queue. User can submit a piece of code to be reviewed using a link to the code. Reviewer can take a request from the queue and submit comments or a link to a gist.
 
 * Ruby version
+2.0.0
 
-* System dependencies
+* Rails version
+4.0.0
 
 * Configuration
+This application uses Google authentication to login and create new user. Unless you mannually create a new user through the console, you need to set up an api for the application through Google. (link) After you get the id and key, populate the config/omniauth.yml.example and rename it to config/omniauth.yml. You should include this in your gitignore file.
 
 * Database creation
+rake db:migrate
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Test
+All test: rake
+Unit test: rspec
+Acceptance test: rspec spec/acceptance

@@ -12,6 +12,14 @@ module Q
       db_service.find_by_id(review_id)
     end
 
+    def create_reply(review_request_id, attributes)
+      db_service.create({:review_request_id => review_request_id,
+                         :url => attributes[:url],
+                         :comment => attributes[:comment],
+                         :posted_date => DateTime.now
+                         })
+    end
+
     def user_replies
       db_service.find_all({:reviewer_id => user_id, :posted_date => nil})
     end

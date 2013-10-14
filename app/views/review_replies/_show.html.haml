@@ -1,0 +1,11 @@
+- reply = @review_reply
+%table.data_list
+  %tr
+    %td Url:
+    %td= reply.url
+  %tr
+    %td Comment:
+    %td= reply.comment
+  %tr
+    %td Posted date:
+    %td= reply.posted_date.to_formatted_s(:long)
