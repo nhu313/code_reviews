@@ -12,4 +12,8 @@ class ReviewRequest < ActiveRecord::Base
   def taken?
     reviewer_id
   end
+
+  def reviewer_name
+    user.first_name + ' ' + user.last_name
+  end
 end
