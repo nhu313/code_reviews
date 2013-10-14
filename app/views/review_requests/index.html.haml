@@ -19,4 +19,4 @@
     %ul
     - @review_requests.completed.each do |review_request|
       %li
-        = link_to request_link_name(review_request), review_request
+        = link_to request_link_name(review_request), review_url(review_request)

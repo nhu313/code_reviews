@@ -10,8 +10,6 @@ class ReviewRequestsController < ApplicationController
 
   def show
     @review_request = service.find(request_id)
-    @review_reply = @review_request.review_reply if @review_request.completed?
-    render 'reviews/show'
   end
 
   def new
