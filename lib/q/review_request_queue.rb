@@ -9,10 +9,12 @@ module Q
     def peek
       skipped_date = last_skipped_date
       request_db.find_all({:reviewer_id => nil}).detect do |r|
-        puts r.posted_date.inspect
-        puts "skipped date #{skipped_date.inspect}"
         r.user_id != user_id and r.posted_date > skipped_date
       end
+    end
+
+    def take_request(review_request_id)
+      request_db.update(review_request_id, {:reviewer_id => user_id})
     end
 
     def skip_request(review_request_id)

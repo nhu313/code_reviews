@@ -9,18 +9,16 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @review_request = ReviewRequest.find(review_request_id)
+    @review_request = request_service.find(review_request_id)
     @review_reply = @review_request.review_reply
   end
 
   def take_request
-    @review_request = ReviewRequest.find(review_request_id)
-    @review_request.update_attributes({:reviewer_id => user_id})
+    queue.take_request(review_request_id)
     redirect_to root_path
   end
 
   def skip_request
-    queue = Q::ReviewRequestQueue.for(user_id)
     queue.skip_request(review_request_id)
     redirect_to root_path
   end
@@ -32,5 +30,9 @@ class ReviewsController < ApplicationController
 
   def request_service
     Q::ReviewRequestService.new(user_id, ReviewRequest, SkippedReviewRequest)
+  end
+
+  def queue
+    Q::ReviewRequestQueue.for(user_id)
   end
 end
