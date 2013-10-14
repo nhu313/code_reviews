@@ -12,7 +12,8 @@ module Q
     end
 
     def taken
-      db.find_all({:reviewer_id => user_id})
+      taken_request = db.find_all({:reviewer_id => user_id})
+      taken_request.find_all {|r| !r.completed?}
     end
 
     private

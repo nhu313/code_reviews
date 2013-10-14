@@ -2,6 +2,6 @@
 - if @review_reply
   %hr
   =render "review_replies/show"
-  -unless @review.archive
+  -unless @review_request.archive
     %br
-    %p= button_to "Archive", archive_review_request_path(@review.request), :class => "button"
+    %p= button_to "Archive", archive_review_request_path(@review_request), :class => "button"

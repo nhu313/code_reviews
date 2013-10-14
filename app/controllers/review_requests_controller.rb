@@ -41,6 +41,6 @@ class ReviewRequestsController < ApplicationController
     end
 
     def request_id
-      params["id"].to_i
+      params[:id]
     end
 end
