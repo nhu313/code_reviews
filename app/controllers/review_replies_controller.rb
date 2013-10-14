@@ -16,11 +16,11 @@ class ReviewRepliesController < ApplicationController
 
   private
   def request_service
-    @request_service ||= Q::ReviewRequestService.new(user_id, ReviewRequest, SkippedReviewRequest)
+    @request_service ||= Q::ReviewRequestService.new(user_id)
   end
 
   def reply_service
-    @reply_service ||= Q::ReviewReplyService.new(user_id, ReviewReply)
+    @reply_service ||= Q::ReviewReplyService.new(user_id)
   end
 
   def review_request_id

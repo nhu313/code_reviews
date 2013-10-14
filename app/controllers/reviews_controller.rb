@@ -29,7 +29,7 @@ class ReviewsController < ApplicationController
   end
 
   def request_service
-    Q::ReviewRequestService.new(user_id, ReviewRequest, SkippedReviewRequest)
+    Q::ReviewRequestService.new(user_id)
   end
 
   def queue

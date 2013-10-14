@@ -3,9 +3,8 @@ require 'q/db_service'
 module Q
   class ReviewRequestService
 
-    def initialize(user_id, request_model, skip_history_model)
-      @request_db_service = DBService.new(request_model)
-      @skip_history_db_service = DBService.new(skip_history_model)
+    def initialize(user_id)
+      @request_db_service = DBService.create(:review_request)
       @user_id = user_id
     end
 
@@ -39,6 +38,6 @@ module Q
     end
 
     private
-    attr_reader :user_id, :request_db_service, :skip_history_db_service
+    attr_reader :user_id, :request_db_service
   end
 end

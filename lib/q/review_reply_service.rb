@@ -3,8 +3,8 @@ require 'q/db_service'
 module Q
   class ReviewReplyService
 
-    def initialize(user_id, model)
-      @db_service = Q::DBService.new(model)
+    def initialize(user_id)
+      @db_service = Q::DBService.create(:review_reply)
       @user_id = user_id
     end
 
