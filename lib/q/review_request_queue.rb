@@ -1,4 +1,4 @@
-require 'q/db_service'
+require 'q/service_factory'
 
 module Q
   class ReviewRequestQueue
@@ -34,8 +34,8 @@ module Q
 
     def initialize(user_id)
       @user_id = user_id
-      @request_db = DBService.create(:review_request)
-      @skipped_request_db = DBService.create(:skipped_review_request)
+      @request_db = ServiceFactory.db_service(:review_request)
+      @skipped_request_db = ServiceFactory.db_service(:skipped_review_request)
     end
 
     def last_skipped_date

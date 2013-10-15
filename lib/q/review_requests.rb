@@ -1,4 +1,4 @@
-require 'q/db_service'
+require 'q/service_factory'
 
 module Q
   class ReviewRequests
@@ -28,7 +28,7 @@ module Q
     end
 
     def retrieve_requests
-      db = DBService.create(:review_request)
+      db = ServiceFactory.db_service(:review_request)
       db.find_all({:user_id => user_id})
     end
   end

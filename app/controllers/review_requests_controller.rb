@@ -1,8 +1,7 @@
-require 'q/review_request_service'
+require 'q/service_factory'
 require 'q/review_requests'
 
 class ReviewRequestsController < ApplicationController
-  attr_writer :service
 
   def index
     @review_requests = Q::ReviewRequests.for(user_id)
@@ -35,7 +34,7 @@ class ReviewRequestsController < ApplicationController
 
   private
     def service
-      @service ||= Q::ReviewRequestService.new(user_id)
+      Q::ServiceFactory.create(:review_request, user_id)
     end
 
     def request_id

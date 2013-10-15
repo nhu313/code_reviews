@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   def user_id
     session[:user_id]
+    2
   end
 
   def user_first_name
