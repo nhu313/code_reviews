@@ -1,63 +1,91 @@
 require 'spec_helper'
 require 'q/review_requests'
-require 'mocks/q/mock_model'
 require 'mocks/q/mock_review_request'
+require 'q/services/factory'
 
 module Q
   describe ReviewRequests do
     let(:user_id) {5444}
-    let(:request_model) {Models[:review_request]}
-    let(:review_requests) {ReviewRequests.new(user_id)}
+    let(:model){Services::Factory.models[:review_request]}
 
-    context "new request" do
-      it "creates" do
-        posted_date = "now"
-        DateTime.stub(:now).and_return(posted_date)
+    it "when there is one completed request and one open request" do
+      completed_requests = create_completed_requests(1)
+      model.data = completed_requests + create_open_requests(1)
 
-        request = review_requests.create(params.clone)
-        request_model.attributes.should == expected_attributes(params, posted_date)
+      review_requests = ReviewRequests.new(user_id)
+      review_requests.completed.should == completed_requests
+    end
+
+    it "when all are completed request" do
+      completed_requests = create_completed_requests(5)
+      model.data = completed_requests
+
+      review_requests = ReviewRequests.new(user_id)
+      review_requests.completed.should == completed_requests
+    end
+
+    it "when all are open requests" do
+      open_requests = create_open_requests(3)
+      model.data = open_requests
+
+      review_requests = ReviewRequests.new(user_id)
+      review_requests.open.should == open_requests
+    end
+
+    it "when all are taken requests" do
+      taken_requests = create_taken_requests(2)
+      model.data = taken_requests
+
+      review_requests = ReviewRequests.new(user_id)
+      review_requests.taken.should == taken_requests
+    end
+
+    it "is not taken when the request is completed" do
+      completed_requests = create_completed_requests(2)
+      model.data = completed_requests
+
+      review_requests = ReviewRequests.new(user_id)
+      review_requests.taken.should == []
+    end
+
+    context "when there are open, taken, and completed requests" do
+      let(:open_requests) {create_open_requests(2)}
+      let(:completed_requests) {create_completed_requests(4)}
+      let(:taken_requests) {create_taken_requests(3)}
+
+      before(:each) do
+        model.data = open_requests + completed_requests + taken_requests
+        @review_requests = ReviewRequests.new(user_id)
       end
 
-      def params
-        {:title => "Blog title", :url => "some url",
-         :description => "text**", :extra_param => "something"}
+      it "has open requests" do
+        @review_requests.open.should == open_requests
       end
 
-      def expected_attributes(attributes, posted_date)
-        attributes.delete(:extra_param)
-        attributes[:user_id] = user_id
-        attributes[:posted_date] = posted_date
-        attributes
+      it "has completed requests" do
+        @review_requests.completed.should == completed_requests
+      end
+
+      it "has taken requests" do
+        @review_requests.taken.should == taken_requests
       end
     end
 
-    context "find" do
-      it "finds the request given a request id" do
-        request_id = 88422;
-        review_requests.find(request_id)
-        request_model.id.should == request_id
-      end
-
-      it "finds all the requests" do
-        data = ["1", "2"]
-        request_model.data = data
-        review_requests.all.should == data
-        request_model.filter.should == {:user_id => user_id}
-      end
-
-      it "finds active requests" do
-        data = ["1", "2"]
-        request_model.data = data
-        review_requests.active.should == data
-        request_model.filter.should == {:user_id => user_id, :archive => false}
+    def create_open_requests(size)
+      (0...size).map do |id|
+        MockReviewRequest.new(user_id, id)
       end
     end
 
-    context "archieve request" do
-      it "save user preference" do
-        review_requests.archive(11)
-        expected_attributes = {:archive => true}
-        request_model.attributes.should == expected_attributes
+    def create_completed_requests(size)
+      create_taken_requests(size). each {|r| r.completed = true}
+    end
+
+    def create_taken_requests(size)
+      (0...size).map do |id|
+        taken_review = MockReviewRequest.new(user_id, id)
+        taken_review.taken = true
+        taken_review
       end
     end
   end

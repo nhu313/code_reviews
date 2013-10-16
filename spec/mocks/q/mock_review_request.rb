@@ -7,7 +7,6 @@ class MockReviewRequest
   end
 
   def completed?
-    return true if @completed.nil?
     @completed
   end
 

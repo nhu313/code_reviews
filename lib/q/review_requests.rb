@@ -8,15 +8,15 @@ module Q
     end
 
     def completed
-      review_requests.select {|r| r.completed? }
+      review_requests.find_all {|r| r.completed? }
     end
 
     def taken
-      review_requests.select {|r| r.taken? unless r.completed?}
+      review_requests.find_all {|r| r.taken? unless r.completed?}
     end
 
     def open
-      review_requests.select {|r| !r.taken? }
+      review_requests.find_all {|r| !r.taken? }
     end
 
     private
