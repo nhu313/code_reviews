@@ -1,7 +1,7 @@
 require 'mocks/q/mock_model'
 
 module Q
-  Models =
+  MockModels =
       # set default and add models
       {:review_request => MockModel.new,
         :review_reply => MockModel.new,
