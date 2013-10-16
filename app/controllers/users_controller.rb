@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    service = Q::Services::Factory.create(:user)
+    service = Q::Services::Factory.create(:user, 0)
     session[:user_id] = service.user_id_for(request.env["omniauth.auth"])
     redirect_to root_url
   end

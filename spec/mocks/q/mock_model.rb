@@ -2,8 +2,8 @@ module Q
   class MockModel
     attr_accessor :id, :attributes, :filter, :data, :create_data
 
-    def initialize
-      @id = 1113
+    def initialize(id = 1113)
+      @id = id
       @create_data = self
     end
 
