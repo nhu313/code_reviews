@@ -1,11 +1,10 @@
-require 'mocks/q/mock_data'
-
 module Q
   class MockModel
     attr_accessor :id, :attributes, :filter, :data, :create_data
 
     def initialize
-      @create_data = MockData.new(1113)
+      @id = 1113
+      @create_data = self
     end
 
     def create!(attributes)

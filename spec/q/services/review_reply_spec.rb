@@ -1,13 +1,13 @@
 require 'spec_helper'
 require 'q/services/review_reply'
-require 'q/service_factory'
+require 'q/services/factory'
 
 module Q
   module Services
     describe ReviewReply do
       let(:user_id) {4411}
-      let(:model){MockModel.new}
-      let(:service){::ServiceFactory}
+      let(:model){Factory.models[:review_reply]}
+      let(:service){Factory.create(:review_reply, user_id)}
 
       context "find" do
         it "finds the review given an id" do
@@ -16,37 +16,29 @@ module Q
           model.id.should == review_id
         end
 
-        it "finds all the reviews" do
-          data = ["1", "2"]
-          model.data = data
-          service.user_replies.should == data
-          model.filter.should == {:reviewer_id => user_id, :posted_date => nil}
-        end
+        # it "finds all the reviews" do
+        #   data = ["1", "2"]
+        #   model.data = data
+        #   service.user_replies.should == data
+        #   model.filter.should == {:reviewer_id => user_id, :posted_date => nil}
+        # end
       end
 
-      context "create review" do
-        it "creates a new review" do
-          review_request_id = 444;
-          service.create_review(review_request_id)
-          model.attributes.should == {:reviewer_id => user_id, :review_request_id => review_request_id}
-        end
-      end
+      context "create reply" do
+        it "creates a new reply" do
+          DateTime.stub(:now).and_return("posted_date")
+          review_request_id = 553
+          params = Hash[:url => "url", :comment => "comment"]
 
-      context "submit review" do
-        it "submits a review" do
-          reply = Hash[:url => "url", :comment => "comment"]
-          expected_attributes = expected_reply_attributes(reply)
-          service.submit_reply(13, reply)
-          model.attributes.should == expected_attributes
+          service.create_reply(review_request_id, params)
+
+          model.attributes.should == expected_attributes(params.clone, review_request_id)
         end
 
-        def expected_reply_attributes(params)
-          posted_date = "some date"
-          DateTime.stub(:now).and_return(posted_date)
-
-          expected_attributes = params.clone
-          expected_attributes[:posted_date] = posted_date
-          expected_attributes
+        def expected_attributes(attributes, review_request_id)
+          attributes[:review_request_id] = review_request_id
+          attributes[:posted_date] = DateTime.now
+          attributes
         end
       end
     end
