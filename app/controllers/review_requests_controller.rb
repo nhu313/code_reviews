@@ -1,4 +1,4 @@
-require 'q/service_factory'
+require 'q/services/factory'
 require 'q/review_requests'
 
 class ReviewRequestsController < ApplicationController
@@ -34,7 +34,7 @@ class ReviewRequestsController < ApplicationController
 
   private
     def service
-      Q::ServiceFactory.create(:review_request, user_id)
+      Q::Services::Factory.create(:review_request, user_id)
     end
 
     def request_id

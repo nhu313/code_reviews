@@ -44,4 +44,7 @@ rescue LoadError
   puts 'Coverage disabled, enable by installing simplecov'
 end
 
+require 'q/service_factory'
 require 'mocks/q/mock_models'
+
+Q::ServiceFactory.models = Q::Models

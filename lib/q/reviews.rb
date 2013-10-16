@@ -1,4 +1,4 @@
-require 'q/service_factory'
+require 'q/services/factory'
 
 module Q
   class Reviews
@@ -21,7 +21,7 @@ module Q
 
     def initialize(user_id)
       @user_id = user_id
-      @db = ServiceFactory.db_service(:review_request)
+      @db = Services::Factory.db_service(:review_request)
     end
   end
 end

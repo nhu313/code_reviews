@@ -1,6 +1,6 @@
 require 'q/reviews'
 require 'q/review_request_queue'
-require 'q/service_factory'
+require 'q/services/factory'
 
 class ReviewsController < ApplicationController
 
@@ -9,7 +9,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    request_service = Q::ServiceFactory.create(:review_request, user_id)
+    request_service = Q::Services::Factory.create(:review_request, user_id)
     puts "request #{request_service}"
     @review_request = request_service.find(review_request_id)
     @review_reply = @review_request.review_reply

@@ -15,3 +15,14 @@ Scenario: Header not displayed on the sign in page
   When I go to the homepage
   Then I should not see the header
 
+Scenario: Logging in
+  Given that I am a new user
+  When I go to the homepage
+  And I click "Sign in"
+  Then I should be taken to google authentication page
+
+Scenario: Logging in
+  Given that I am a new user
+  When I go to the homepage
+  And I click "Sign in"
+  Then I should be taken to google authentication page

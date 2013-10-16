@@ -1,5 +1,5 @@
 require 'q/user_service'
-require 'q/db_service'
+require 'q/services/factory'
 
 class UsersController < ApplicationController
   def signin
@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    service = Q::ServiceFactory.create(:user)
+    service = Q::Services::Factory.create(:user)
     session[:user_id] = service.user_id_for(request.env["omniauth.auth"])
     redirect_to root_url
   end
