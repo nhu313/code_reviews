@@ -18,7 +18,7 @@ class ReviewRequestsController < ApplicationController
   def create
     attributes = params[:review_request]
     if service.valid?(attributes)
-      @review_request = service.create(user_id, attributes)
+      @review_request = service.create(attributes)
       render :show
     else
       flash[:notice] = "Please enter all the required(*) fields."

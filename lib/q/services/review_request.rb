@@ -13,7 +13,7 @@ module Q
               :description => params[:description]]
       end
 
-      def create(user_id, params)
+      def create(params)
         request_attributes = extract_attributes(params)
         request_attributes[:user_id] = user_id
         request_attributes[:posted_date] = DateTime.now
