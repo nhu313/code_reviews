@@ -27,6 +27,7 @@ module Q
 
     def find(id)
       @id = id
+      return data.first if data
       self
     end
 

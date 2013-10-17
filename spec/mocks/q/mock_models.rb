@@ -2,14 +2,17 @@ require 'mocks/q/mock_model'
 
 module Q
   class MockModels
-    def self.map
-      Hash.new(MockModel.new)
-      # set default and add models
-      # {:review_request => MockModel.new,
-      #   :review_reply => MockModel.new,
-      #   :skipped_review_request => MockModel.new,
-      #   :user => MockModel.new
-      # }
+
+    def initialize
+      @map = Hash.new
+    end
+
+    def [](model_name)
+      @map[model_name] ||= MockModel.new
+    end
+
+    def add(model_name)
+      @map[model_name] = MockModel.new
     end
   end
 end

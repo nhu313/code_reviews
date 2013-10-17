@@ -8,6 +8,7 @@ module Q
 
     def peek
       skipped_date = last_skipped_date
+
       request_db.find_all({:reviewer_id => nil}).detect do |r|
         r.user_id != user_id and r.posted_date > skipped_date
       end

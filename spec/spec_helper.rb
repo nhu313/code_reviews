@@ -48,4 +48,4 @@ require 'q/services/factory'
 require 'mocks/q/mock_models'
 require 'q/services/db'
 Q::Services::Factory.db_service = Q::Services::DB
-Q::Services::Factory.models = Q::MockModels.map
+Q::Services::Factory.models = Q::MockModels.new

@@ -1,10 +1,10 @@
 module Q
   class MockSkippedReviewRequest
-    attr_reader :user_id, :posted_date
+    attr_reader :user_id, :last_skipped_date
 
-    def initialize(user_id, posted_date = DateTime.new)
+    def initialize(user_id, skipped_date)
       @user_id = user_id
-      @posted_date = posted_date
+      @last_skipped_date = skipped_date
     end
   end
 end

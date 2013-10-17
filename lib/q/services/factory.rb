@@ -1,6 +1,6 @@
 require 'q/services/review_reply'
 require 'q/services/review_request'
-require 'q/services/user'
+require 'q/services/user_service'
 
 module Q
   module Services
@@ -30,7 +30,7 @@ module Q
         when :review_request
           return ReviewRequest.new(user_id, db)
         when :user
-          return User.new(db)
+          return UserService.new(db)
         else
           puts "Can't find the service #{service_name}"
         end
