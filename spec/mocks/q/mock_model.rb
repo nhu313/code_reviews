@@ -43,5 +43,13 @@ module Q
     def update_attributes(attributes)
       @attributes = attributes
     end
+
+    def found_id
+      @id
+    end
+
+    def found_data
+      self
+    end
   end
 end

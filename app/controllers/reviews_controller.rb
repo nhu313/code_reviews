@@ -10,7 +10,6 @@ class ReviewsController < ApplicationController
 
   def show
     request_service = Q::Services::Factory.create(:review_request, user_id)
-    puts "request #{request_service}"
     @review_request = request_service.find(review_request_id)
     @review_reply = @review_request.review_reply
   end
