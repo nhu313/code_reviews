@@ -8,8 +8,8 @@ module Q
   describe ReviewRequestQueue do
     let(:user_id){9944}
     let(:another_user_id){user_id + 11}
-    let!(:request_model){Services::Factory.models.add(:review_request)}
-    let!(:skipped_request_model){Services::Factory.models.add(:skipped_review_request)}
+    let!(:request_model){Services::Factory.models[:review_request]}
+    let!(:skipped_request_model){Services::Factory.models[:skipped_review_request]}
     let(:queue){ReviewRequestQueue.for(user_id)}
 
     describe "peek" do

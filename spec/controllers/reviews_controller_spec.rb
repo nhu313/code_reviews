@@ -50,7 +50,7 @@ describe ReviewsController do
 
     it "searches for the request id" do
       get :show, {:review_request_id => review_request_id}
-      review_request_model.search_filter.should == {:id => review_request_id}
+      review_request_model.search_filter[:id].should == review_request_id
     end
   end
 
@@ -72,17 +72,20 @@ describe ReviewsController do
   end
 
   describe "skip request" do
+    before do
+      request.session[:user_id] = user_id
+      review_request_model.data = [review_request]
+    end
+
     it "redirect to root path" do
       post :skip_request, {:review_request_id => 3}
       response.should redirect_to root_path
     end
 
     it "saves skipped history" do
-      request.session[:user_id] = user_id
-
       post :skip_request, {:review_request_id => 3}
-      skipped_request_model = Q::Services::Factory.models[:skipped_review_request]
 
+      skipped_request_model = Q::Services::Factory.models[:skipped_review_request]
       skipped_request_model.attributes[:user_id].should == user_id
     end
   end

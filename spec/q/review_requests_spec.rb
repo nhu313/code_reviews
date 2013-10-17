@@ -6,7 +6,7 @@ require 'q/services/factory'
 module Q
   describe ReviewRequests do
     let(:user_id) {5444}
-    let!(:model){Services::Factory.models.add(:review_request)}
+    let!(:model){Services::Factory.models[:review_request]}
     let(:open_requests) {MockReviewRequestFactory.create_open_requests(user_id, 2)}
     let(:completed_requests) {MockReviewRequestFactory.create_completed_requests(user_id, 4)}
     let(:taken_requests) {MockReviewRequestFactory.create_taken_requests(user_id, 3)}

@@ -6,7 +6,7 @@ require 'mocks/q/mock_model'
 module Q
   module Services
     describe UserService do
-      let!(:model){Factory.models.add(:user)}
+      let!(:model){Factory.models[:user]}
       let(:user_service){Factory.create(:user, 9)}
       let(:auth){
         user_info = Hash["first_name" => "Annie", "last_name" => "Smith", "email" => "annie@email.com"]

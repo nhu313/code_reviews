@@ -7,7 +7,7 @@ require 'mocks/q/mock_review_request_factory'
 module Q
   describe Reviews do
     let(:user_id) {5444}
-    let!(:request_model){Services::Factory.models.add(:review_request)}
+    let!(:request_model){Services::Factory.models[:review_request]}
     let(:reviews) {Reviews.for(user_id)}
     let(:data) {[MockReviewRequestFactory.create(user_id),
                  MockReviewRequestFactory.create(user_id)]}

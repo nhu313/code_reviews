@@ -21,8 +21,8 @@ describe UsersController do
   end
 
   context "create" do
-    let!(:model){Q::Services::Factory.models.add(:user)}
-    let(:auth){Hash["uid" => "id111"]}
+    let(:model){Q::Services::Factory.models[:user]}
+    let(:auth){Hash["uid" => "id111", "info" => {}]}
 
     before(:each) do
       request.env["omniauth.auth"] = auth

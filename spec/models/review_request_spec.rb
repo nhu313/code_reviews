@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'mocks/q/mock_user'
 
 describe ReviewRequest do
   let(:review_request){ReviewRequest.new}
@@ -31,7 +32,6 @@ describe ReviewRequest do
 
   describe "Reviewer's name" do
     it "when there is a reviewer" do
-      MockUser = Struct.new(:first_name, :last_name)
       review_request.stub(:user).and_return(MockUser.new("first", "last"))
       review_request.reviewer_name.should == "first last"
     end

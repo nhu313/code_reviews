@@ -8,7 +8,7 @@ class ReviewRequestsController < ApplicationController
   end
 
   def show
-    @review_request = service.find(request_id)
+    @review_request = service.find(review_request_id)
   end
 
   def new
@@ -28,7 +28,7 @@ class ReviewRequestsController < ApplicationController
   end
 
   def archive
-    service.archive(request_id)
+    service.archive(review_request_id)
     redirect_to review_request_path(request.parameters)
   end
 
@@ -37,7 +37,7 @@ class ReviewRequestsController < ApplicationController
       Q::Services::Factory.create(:review_request, user_id)
     end
 
-    def request_id
-      params[:id]
+    def review_request_id
+      params[:id].to_i
     end
 end

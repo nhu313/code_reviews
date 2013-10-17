@@ -6,7 +6,7 @@ module Q
   module Services
     describe ReviewReply do
       let(:user_id) {4411}
-      let!(:model){Factory.models.add(:review_reply)}
+      let!(:model){Factory.models[:review_reply]}
       let(:service){Factory.create(:review_reply, user_id)}
 
       it "finds the review given an id" do

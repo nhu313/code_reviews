@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'mocks/q/mock_user'
 
 describe ApplicationController do
   context "User" do
@@ -15,17 +16,9 @@ describe ApplicationController do
     end
 
     it "gets the user first name from the database if there is none in session" do
-      user = MockUser.new("name")
+      user = MockUser.new("name", "last name")
       User.stub(:find_by_id).and_return(user)
       @controller.user_first_name.should == user.first_name
-    end
-
-    class MockUser
-      attr_reader :first_name
-
-      def initialize(first_name)
-        @first_name = first_name
-      end
     end
   end
 end

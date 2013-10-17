@@ -6,7 +6,7 @@ module Q
   module Services
     describe ReviewRequest do
       let(:user_id) {777}
-      let!(:model){Factory.models.add(:review_request)}
+      let!(:model){Factory.models[:review_request]}
       let(:service){Factory.create(:review_request, user_id)}
       let(:params) {Hash[:title => "Blog title", :url => "some url", :description => "text**",
         :extra_param => "something"]}

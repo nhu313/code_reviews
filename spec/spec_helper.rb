@@ -3,6 +3,9 @@ ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
+require 'q/services/factory'
+require 'mocks/q/mock_models'
+require 'q/services/db'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -32,6 +35,10 @@ RSpec.configure do |config|
   #     --seed 1234
   config.order = "random"
 
+  config.before(:each) do
+    Q::Services::Factory.db_service = Q::Services::DB
+    Q::Services::Factory.models = Q::MockModels.new
+  end
 end
 
 begin
@@ -43,9 +50,3 @@ begin
 rescue LoadError
   puts 'Coverage disabled, enable by installing simplecov'
 end
-
-require 'q/services/factory'
-require 'mocks/q/mock_models'
-require 'q/services/db'
-Q::Services::Factory.db_service = Q::Services::DB
-Q::Services::Factory.models = Q::MockModels.new
