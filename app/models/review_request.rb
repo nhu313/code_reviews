@@ -14,6 +14,6 @@ class ReviewRequest < ActiveRecord::Base
   end
 
   def reviewer_name
-    user.first_name + ' ' + user.last_name
+    (user.first_name + ' ' + user.last_name) if user
   end
 end

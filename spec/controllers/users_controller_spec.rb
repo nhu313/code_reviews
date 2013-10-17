@@ -1,5 +1,5 @@
 require 'spec_helper'
-require 'mocks/q/mock_user_service'
+require 'q/services/factory'
 
 describe UsersController do
   it "gets sign in screen" do
@@ -21,15 +21,17 @@ describe UsersController do
   end
 
   context "create" do
-    let(:user_service){Q::MockUserService.new}
+    let!(:model){Q::Services::Factory.models.add(:user)}
+    let(:auth){Hash["uid" => "id111"]}
 
-    before :each do
-      @controller.service = user_service
+    before(:each) do
+      request.env["omniauth.auth"] = auth
+      model.data = [model]
     end
 
-    it "gets the user" do
+    it "gets the user id" do
       get :create
-      user_service.was told_to(:user_id_for)
+      request.session[:user_id].should == model.id
     end
 
     it "redirect user to reviews page" do

@@ -1,4 +1,3 @@
-require 'q/user_service'
 require 'q/services/factory'
 
 class UsersController < ApplicationController
