@@ -1,11 +1,14 @@
-require 'q/reviews'
 require 'q/review_request_queue'
 require 'q/services/factory'
 
 class ReviewsController < ApplicationController
 
   def index
-    @presenter = ReviewsPresenter.new(user_id)
+    if user_id
+      @presenter = ReviewsPresenter.new(user_id)
+    else
+      redirect_to signin_path
+    end
   end
 
   def show
@@ -26,7 +29,7 @@ class ReviewsController < ApplicationController
 
   private
   def review_request_id
-    params[:review_request_id]
+    params[:review_request_id].to_i
   end
 
   def queue

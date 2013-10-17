@@ -26,6 +26,7 @@ module Q
     end
 
     def find(id)
+      @filter = {:id => id}
       @id = id
       return data.first if data
       self
@@ -50,6 +51,10 @@ module Q
 
     def found_data
       self
+    end
+
+    def search_filter
+      @filter
     end
   end
 end

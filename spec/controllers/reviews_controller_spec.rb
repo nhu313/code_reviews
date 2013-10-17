@@ -1,82 +1,65 @@
 require 'spec_helper'
-require 'mocks/q/mock_review_request_service'
-require 'mocks/q/mock_review_reply_service'
+require 'q/services/factory'
+require 'mocks/q/mock_review_request_factory'
 
 describe ReviewsController do
-  let(:request_service){Q::MockReviewRequestService.new}
-  let(:reply_service) {Q::MockReviewReplyService.new}
-  before(:each) do
-    @controller.request_service = request_service
-    @controller.reply_service = reply_service
-  end
+  let(:user_id){121}
+  let(:review_request_model){Q::Services::Factory.models[:review_request]}
+  let(:review_request) {MockReviewRequestFactory.create(user_id)}
 
   context "index" do
+    before(:each) do
+      review_request_model.data = [review_request]
+    end
+
     it "when there is a user in session" do
-      request.session[:user_id] = 111
+      request.session[:user_id] = user_id
       get :index
       assigns(:presenter).should_not be_nil
     end
 
     it "when there is no user in session" do
       get :index
-      response.should redirect_to signin_url
+      response.should redirect_to signin_path
     end
   end
 
-  describe "show" do
-    let(:review){MockReviewReply.new("request")}
+  describe "show reviews" do
+    let(:review_request_id) {119}
+    let(:review_reply) {"reply"}
 
     before(:each) do
-      reply_service.will_find review
-    end
-    context "show" do
-      it "gets show" do
-        get :show, {:id => 11}
-        response.should be_success
-      end
-
-      it "assigns the request" do
-        get :show, {:id => 188}
-        assigns(:review_request).should == review.review_request
-      end
-
-      it "assigns the reply" do
-        get :show, {:id => 188}
-        assigns(:review_reply).should == review
-      end
+      review_request.review_reply = review_reply
+      review_request_model.data = [review_request]
     end
 
-    context "edit" do
-      it "gets edit" do
-        get :edit, {:id => 11}
-        response.should be_success
-      end
-
-      it "assigns the request" do
-        get :edit, {:id => 188}
-        assigns(:review_request).should == review.review_request
-      end
-
-      it "assigns the reply" do
-        get :edit, {:id => 188}
-        assigns(:review_reply).should == review
-      end
-    end
-  end
-
-  describe "create reply" do
-    it "renders show" do
-      patch :submit_reply, {:id => 1}
-      response.should redirect_to :review_reply
+    it "has route" do
+      get :show, {:review_request_id => review_request_id}
+      response.should be_success
     end
 
-    it "asks service to submit reply" do
-      patch :submit_reply, {:id => 1}
-      reply_service.was told_to :submit_reply
+    it "assigns the request" do
+      get :show, {:review_request_id => review_request_id}
+      assigns(:review_request).should == review_request
+    end
+
+    it "assigns the reply" do
+      get :show, {:review_request_id => review_request_id}
+      assigns(:review_reply).should == review_reply
+    end
+
+    it "searches for the request id" do
+      get :show, {:review_request_id => review_request_id}
+      review_request_model.search_filter.should == {:id => review_request_id}
     end
   end
 
   describe "take request" do
+    before(:each) do
+      request.session[:user_id] = user_id
+      review_request_model.data = [review_request_model]
+    end
+
     it "redirect to root path" do
       post :take_request, {:review_request_id => 3}
       response.should redirect_to root_path
@@ -84,7 +67,7 @@ describe ReviewsController do
 
     it "asks review reply service to handle request" do
       post :take_request, {:review_request_id => 3}
-      reply_service.was told_to :create_review
+      review_request_model.attributes.should == {:reviewer_id => user_id}
     end
   end
 
@@ -94,16 +77,13 @@ describe ReviewsController do
       response.should redirect_to root_path
     end
 
-    it "asks service to handle request" do
-      post :skip_request, {:review_request_id => 3}
-      request_service.was told_to :save_skipped_request
-    end
-  end
-end
+    it "saves skipped history" do
+      request.session[:user_id] = user_id
 
-class MockReviewReply
-  attr_accessor :review_request
-  def initialize(review_request)
-    @review_request = review_request
+      post :skip_request, {:review_request_id => 3}
+      skipped_request_model = Q::Services::Factory.models[:skipped_review_request]
+
+      skipped_request_model.attributes[:user_id].should == user_id
+    end
   end
 end

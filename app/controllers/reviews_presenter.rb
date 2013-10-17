@@ -1,3 +1,6 @@
+require 'q/review_request_queue'
+require 'q/reviews'
+
 class ReviewsPresenter
   attr_reader :queue, :reviews_submitted, :reviews_taken
 
